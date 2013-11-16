@@ -1,0 +1,30 @@
+﻿@model TagRelationsListModel
+
+<ul class="tags-list">
+	@foreach (var t in Model.Relations)
+	{
+		<li>
+			@Html.ActionLink(t.Name, "Details", new { id = t.ID })
+			@if (Model.ShowDeleteButtons)
+			{
+				using(
+					Ajax.BeginForm(
+						"DeleteRelation",
+						null,
+						new AjaxOptions 
+						{
+							UpdateTargetId = Model.IsParents ? "parents-list" : "childrens-list",
+							Confirm = "Delete relation?"
+						},
+						new { @class = "inline-form" }))
+				{
+					<input type="hidden" name="parentID" value="@(Model.IsParents ? t.ID : Model.TagID)"/>
+					<input type="hidden" name="childrenID" value="@(Model.IsParents ? Model.TagID : t.ID)"/>
+					<input type="hidden" name="isParent" value="@Model.IsParents.ToString()"/>
+					<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+					<input type="submit" value="x" class="btn btn-link btn-xs"/>
+				}
+			}
+		</li>
+	}
+</ul>

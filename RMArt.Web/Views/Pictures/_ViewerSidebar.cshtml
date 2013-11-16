@@ -1,0 +1,89 @@
+﻿@model PictureViewerModel
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">@PicturesResources.MetadataPanelTitle</h2>
+	</div>
+	<div class="panel-body">
+		<p>
+			@PicturesResources.MetadataFileSize
+			@(Model.Picture.Width)x@(Model.Picture.Height) @@ @Model.Picture.FileSize.ToInfoSizeString()
+		</p>
+		<p>
+			@PicturesResources.MetadataFormat
+			@Model.Picture.Format.GetName()
+		</p>
+		<p>
+			@PicturesResources.MetadataUploaded
+			<time datetime="@Model.Picture.CreationDate.ToString(VisualizationHelper.ISODateTimeFormat)" class="timeago">
+				@Model.Picture.CreationDate.ToString(VisualizationHelper.DateTimeFormat) (UTC)
+			</time>
+			@PicturesResources.UploadedBy
+			@Html.Action("ShowUserName", "Account", new { id = Model.Picture.CreatorID })
+		</p>
+		<p>
+			@PicturesResources.MetadataScore
+			<span id="score-value">@VisualizationHelper.Score(Model.Picture.Score, Model.Picture.RatesCount)</span>
+		</p>
+		<p>
+			@PicturesResources.RatingLabel
+			@Model.Picture.Rating.GetDisplayName()
+		</p>
+		@if (!string.IsNullOrEmpty(Model.Picture.Source))
+		{
+			<p>
+				@PicturesResources.MetadataSource
+				<a href="@Model.Picture.Source" rel="nofollow" target="_blank">@Model.Picture.Source.RestrictLength(30)</a>
+			</p>
+		}
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">@PicturesResources.TagsTitle</h2>
+	</div>
+	<div class="panel-body">
+		<ul class="comma-separated-list" style="margin-bottom: 8px; display: block;">
+			@foreach (var t in Model.Tags)
+			{
+				<li class="tag @t.Tag.Type.ToString().ToLower()"><a href="@t.Url" title="@t.Description">@t.Tag.Name</a></li>
+			}
+			@if (Model.Tags.Count == 0 || Model.Picture.RequiresTagging)
+			{
+				<li class="tag general"><a href="@Url.Gallery(TagsHelper.EncodeTagName(TagsHelper.TagmeTagName))">@TagsHelper.TagmeTagName</a></li>
+			}
+		</ul>
+	</div>
+</div>
+
+@if (Model.Picture.Status == ModerationStatus.Accepted)
+{
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">@PicturesResources.ShareTitle</h2>
+		</div>
+		<div class="panel-body">
+			<div style="text-align: center; margin-bottom: 15px;">
+				<a href="https://www.facebook.com/sharer.php?u=@Url.Encode(Model.ShareUrl)&t=@Url.Encode(ViewBag.Title)" title="@PicturesResources.ShareWith Facebook">
+					<img src="~/Images/facebook.png" width="48" height="48" alt="Facebook"/></a>
+				<a href="https://twitter.com/share?url=@Url.Encode(Model.ShareUrl)&text=@Url.Encode(ViewBag.Title)" title="@PicturesResources.ShareWith Twitter">
+					<img src="~/Images/twitter.png" width="48" height="48" alt="Twitter"/></a>
+				<a href="https://plus.google.com/share?url=@Url.Encode(Model.ShareUrl)" title="@PicturesResources.ShareWith Google+">
+					<img src="~/Images/google_plus.png" width="48" height="48" alt="Google+"/></a>
+				<a href="http://vk.com/share.php?url=@Url.Encode(Model.ShareUrl)&title=@Url.Encode(ViewBag.Title)" title="@PicturesResources.ShareWith VK">
+					<img src="~/Images/vk.png" width="48" height="48" alt="VK"/></a>
+			</div>
+			<div>
+				<div class="form-group">
+					<label for="viewer-link-box">@PicturesResources.ShareViewerLinkLabel</label>
+					<input type="text" id="viewer-link-box" value="@Model.ShareUrl" class="form-control input-sm" readonly="readonly" />
+				</div>
+				<div class="form-group">
+					<label for="direct-link-box">@PicturesResources.ShareDirectLinkLabel</label>
+					<input type="text" id="direct-link-box" value="@Model.ShareDirectUrl" class="form-control input-sm" readonly="readonly" />
+				</div>
+			</div>
+		</div>
+	</div>
+}

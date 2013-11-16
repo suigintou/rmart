@@ -1,0 +1,50 @@
+﻿@model ResendConfirmationModel
+@{
+	ViewBag.Title = AccountResources.EmailConfirmationPageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+@Html.ValidationSummary(true, SharedResources.UnsuccessfulOperationMessage)
+
+<form action="@Url.Action("ResendConfirmation")" method="post" class="form-horizontal">
+
+	<div class="form-group">
+		<label for="LoginOrEmail" class="control-label">@AccountResources.LoginOrEmail</label>
+		<div class="controls">
+			@Html.TextBoxFor(m => m.LoginOrEmail, new { required = "required" })
+			@Html.ValidationMessageFor(m => m.LoginOrEmail)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Password" class="control-label">@AccountResources.Password</label>
+		<div class="controls">
+			@Html.PasswordFor(m => m.Password, new { required = "required" })
+			@Html.ValidationMessageFor(m => m.Password)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="NewEmail" class="control-label">@AccountResources.NewEmail</label>
+		<div class="controls">
+			@Html.TextBoxFor(m => m.NewEmail, new { type = "email" })
+			@Html.ValidationMessageFor(m => m.NewEmail)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="recaptcha_response_field" class="control-label">@SharedResources.CaptchaLabel</label>
+		<div class="controls">
+			@ReCaptcha.GetHtml(language: UICulture.Substring(0, 2), theme: "clean")
+			@Html.ValidationMessageFor(m => m.Captcha)
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<input type="submit" class="btn btn-primary" />
+	</div>
+
+</form>

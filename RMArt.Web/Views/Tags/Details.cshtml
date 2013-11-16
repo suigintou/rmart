@@ -1,0 +1,193 @@
+﻿@model TagDetailsModel
+@{
+	ViewBag.Title = string.Concat(TagsResources.Tag, " \"", Model.Tag.Name, "\"");
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title <a href="@Url.Gallery(TagsHelper.EncodeTagName(Model.Tag.Name))" class="badge">@Model.Tag.UsageCount</a></h1>
+</div>
+
+<div class="btn-toolbar" style="margin-bottom: 15px;">
+	<div class="btn-group">
+		<a href="@Url.History(ObjectType.Tag, Model.Tag.ID)" rel="nofollow" class="btn btn-default"><span class="glyphicon glyphicon-time"></span> @HistoryResources.HistoryButtonText</a>
+	</div>
+	<div class="btn-group">
+		<a href="@Url.Report(new ObjectReference(ObjectType.Tag, Model.Tag.ID), Request.RawUrl)" rel="nofollow" class="btn btn-default">
+			<span class="glyphicon glyphicon-flag"></span> @ReportsResources.ReportButtonText
+		</a>
+	</div>
+</div>
+
+@switch (Model.Tag.Status)
+{
+	case ModerationStatus.Declined:
+		<div class="alert alert-danger">@TagsResources.DeclinedModerationMessage</div>break;
+	case ModerationStatus.Pending:
+		<div class="alert alert-warning">@TagsResources.PendingModerationMessage</div>break;
+}
+
+<table class="table table-bordered">
+	<tr>
+		<th class="col-md-3">@TagsResources.TypeField</th>
+		<td>@Model.Tag.Type.GetDisplayName()</td>
+	</tr>
+	<tr>
+		<th>@TagsResources.AliasesField</th>
+		<td>@string.Join(", ", Model.Tag.AliasNames)</td>
+	</tr>
+	<tr>
+		<th>@TagsResources.ParentsField</th>
+		<td>@Html.Action("ShowTags", new { ids = Model.Tag.ParentIDs, linkToTagDetails = true })</td>
+	</tr>
+	<tr>
+		<th>@TagsResources.ChildsField</th>
+		<td>@Html.Action("ShowTags", new { ids = Model.Tag.ChildrenIDs, linkToTagDetails = true })</td>
+	</tr>
+</table>
+
+<div>
+	@Html.Partial("_GalleryThumbs", Model.SamplePictures)
+</div>
+
+@if (Model.CanEdit)
+{
+	<h2>@SharedResources.EditTitle</h2>
+	<form action="@Url.Action("Edit")" method="post" class="form-horizontal">
+		
+		<input type="hidden" name="ids" value="@Model.Tag.ID"/>
+		<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+		
+		<div class="form-group">
+			<label for="name" class="col-md-2 control-label">@TagsResources.NameField</label>
+			<div class="col-md-8">
+				<input type="text" id="name" name="name" value="@Model.Tag.Name" required="required" maxlength="@TagsHelper.MaxTagNameLength" class="form-control"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="type" class="col-md-2 control-label">@TagsResources.TypeField</label>
+			<div class="col-md-3">
+				@Html.DropDownList("type", VisualizationHelper.TagTypesList(Model.Tag.Type), new { @class = "form-control" })
+			</div>
+		</div>
+		
+		@if (Model.CanModerate)
+		{
+			<div class="form-group">
+				<label for="status" class="col-md-2 control-label">Status</label>
+				<div class="col-md-3">
+					@Html.DropDownList("status", VisualizationHelper.ModerationStatusesList(false, null, Model.Tag.Status), new { @class = "form-control" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="comment" class="col-md-2 control-label">Comment</label>
+				<div class="col-md-8">
+					<input type="text" id="comment" name="comment" maxlength="200" class="form-control" />
+				</div>
+			</div>
+		}
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="@SharedResources.ButtonSave" class="btn btn-default"/>
+			</div>
+		</div>
+		
+	</form>
+
+	<div class="row">
+		<div class="col-md-4">
+			<h3>@TagsResources.AliasesField</h3>
+			@using (Html.BeginForm("AddAlias", "Tags", null, FormMethod.Post))
+			{
+				<input type="hidden" name="tagID" value="@Model.Tag.ID"/>
+				<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+				<div class="input-group">
+					<input type="text" name="name" id="add-alias-box" class="form-control" maxlength="@TagsHelper.MaxTagNameLength" required="requried"/>
+					<span class="input-group-btn">
+						<input type="submit" value="Add" class="btn btn-default"/>
+					</span>
+				</div>
+			}
+			<div id="aliases-list">
+				@Html.Action("AliasesList", new { id = Model.Tag.ID, showDeleteButtons = Model.CanEdit })
+			</div>
+		</div>
+	
+		<div class="col-md-4">
+			<h3>@TagsResources.ParentsField</h3>
+			@using (Html.BeginForm("AddRelations", "Tags", null, FormMethod.Post))
+			{
+				<input type="hidden" name="id" value="@Model.Tag.ID"/>
+				<input type="hidden" name="isParents" value="@bool.TrueString" />
+				<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+				<div class="input-group">
+					<input type="text" name="tags" id="parent-name-box" class="form-control tags-box" autocomplete="off"/>
+					<span class="input-group-btn">
+						<input type="submit" value="Add" class="btn btn-default tags-box"/>
+					</span>
+				</div>
+			}
+			<div id="parents-list">
+				@Html.Action(
+					"RelationsList",
+					new { id = Model.Tag.ID, showParents = true, showDeleteButtons = Model.CanEdit, returnUrl = Request.RawUrl })
+			</div>
+		</div>
+	
+		<div class="col-md-4">
+			<h3>@TagsResources.ChildsField</h3>
+			@using (Html.BeginForm("AddRelations", "Tags", null, FormMethod.Post))
+			{
+				<input type="hidden" name="id" value="@Model.Tag.ID"/>
+				<input type="hidden" name="isParents" value="@bool.FalseString" />
+				<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+				<div class="input-group">
+					<input type="text" name="tags" id="children-name-box" class="form-control tags-box" autocomplete="off"/>
+					<span class="input-group-btn">
+						<input type="submit" value="Add" class="btn btn-default"/>
+					</span>
+				</div>
+			}
+			<div id="childrens-list">
+				@Html.Action(
+					"RelationsList",
+					new { id = Model.Tag.ID, showParents = false, showDeleteButtons = Model.CanEdit, returnUrl = Request.RawUrl })
+			</div>
+		</div>
+
+	</div>
+	if (Model.CanAdminister)
+	{
+		<div class="row">
+			<div class="col-md-4">
+				<h3>Merge</h3>
+				<p>Merge into this tag:</p>
+				@using (Html.BeginForm("Merge", "Tags", null, FormMethod.Post, new {onsubmit = "return confirm('Are you sure you want to merge tags?')"}))
+				{
+					<input type="hidden" name="destantionID" value="@Model.Tag.ID"/>
+					<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" name="sourceTags" id="source-tags-box" class="tags-box form-control" autocomplete="off"/>
+							<span class="input-group-btn">
+								<input type="submit" value="Merge" class="btn btn-danger"/>
+							</span>
+						</div>
+					</div>
+				}
+			</div>
+			<div class="col-md-4">
+				<h3>Assigng to childs</h3>
+				<p>Assign this tag to all pictures with children tags:</p>
+				@using (Html.BeginForm("AssignParentTag", "Tags", null, FormMethod.Post))
+				{
+					<input type="hidden" name="tagID" value="@Model.Tag.ID"/>
+					<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+					<input type="submit" value="Run" class="btn btn-danger"/>
+				}
+			</div>
+		</div>
+	}
+}

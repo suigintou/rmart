@@ -1,0 +1,11 @@
+﻿@{
+	ViewBag.Title = AccountResources.EmailConfirmationPageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<p>@string.Format(AccountResources.EmailConfirmationMessage, Model)</p>
+
+<a href="@Url.Action("ResendConfirmation")" class="btn btn-default">@AccountResources.EmailConfirmationResendLinkText</a>

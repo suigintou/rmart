@@ -1,0 +1,8 @@
+﻿@if (ViewBag.Login != null)
+{
+	@Html.ActionLink((string) ViewBag.Login, "View", new { login = ViewBag.Login })
+}
+else
+{
+	@AccountResources.Anonymous
+}

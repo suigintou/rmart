@@ -1,0 +1,46 @@
+﻿@model EditProfileModel
+@{
+	ViewBag.Title = AccountResources.EditProfilePageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+@Html.ValidationSummary(true, SharedResources.UnsuccessfulOperationMessage)
+
+<form action="@Url.Action("EditProfile")" method="post" class="form-horizontal">
+
+	@Html.AntiForgeryToken()
+	@Html.HiddenFor(_ => _.Email)
+
+	<div class="form-group">
+		<label for="Name" class="col-md-2 control-label">@AccountResources.AccountName</label>
+		<div class=" col-md-4">
+			@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Name)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-md-2 control-label">@AccountResources.AccountAvatar</label>
+		<div class="col-md-10">
+			<a href="https://gravatar.com/connect/?source=_signup&email=@(Model.Email)" class="btn btn-default">
+				<span class="glyphicon glyphicon-certificate"></span>
+				@AccountResources.AccountAvatarCreateMessage
+			</a>
+			<a href="https://gravatar.com/connect/" class="btn btn-default">
+				<span class="glyphicon glyphicon-pencil"></span>
+				@AccountResources.AccountAvatarChangeMessage
+			</a>
+			@AccountResources.AccountAvatarYouAvatarOn <a href="https://gravatar.com">Gravatar.com</a>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" class="btn btn-primary" value="@AccountResources.SaveButtonText" />
+		<div/>
+	</div>
+
+</form>

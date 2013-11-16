@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CEAED1E0-73A6-44D2-A9CC-B09C8136B03C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RMArt.Core</RootNamespace>
+    <AssemblyName>RMArt.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\RMArt\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="linq2db">
+      <HintPath>..\packages\linq2db.1.0.1.1\lib\net40\linq2db.dll</HintPath>
+    </Reference>
+    <Reference Include="ParsecSharp">
+      <HintPath>..\Dependencies\ParsecSharp\ParsecSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\DataContextExtensions.cs" />
+    <Compile Include="Data\DataContextProvider.cs" />
+    <Compile Include="Data\IDataContextProvider.cs" />
+    <Compile Include="Common\Identity.cs" />
+    <Compile Include="Common\ModerationStatus.cs" />
+    <Compile Include="Common\ObjectReference.cs" />
+    <Compile Include="Common\ObjectType.cs" />
+    <Compile Include="Common\Rating.cs" />
+    <Compile Include="Common\Size.cs" />
+    <Compile Include="ContentPages\ContentPage.cs" />
+    <Compile Include="ContentPages\DatabaseContentRepository.cs" />
+    <Compile Include="ContentPages\IContentRepository.cs" />
+    <Compile Include="Discussions\DiscussionMessage.cs" />
+    <Compile Include="Discussions\DiscussionService.cs" />
+    <Compile Include="Discussions\IDiscussionService.cs" />
+    <Compile Include="Favorites\DatabaseFavoritesRepository.cs" />
+    <Compile Include="Favorites\FavoritesItem.cs" />
+    <Compile Include="Favorites\FavoritesQuery.cs" />
+    <Compile Include="Favorites\IFavoritesRepository.cs" />
+    <Compile Include="Files\FileInfoWrapper.cs" />
+    <Compile Include="Files\IFileInfo.cs" />
+    <Compile Include="Files\IFileRepository.cs" />
+    <Compile Include="History\DatabaseHistoryRepository.cs" />
+    <Compile Include="History\HistoryEvent.cs" />
+    <Compile Include="History\HistoryField.cs" />
+    <Compile Include="History\HistoryHelper.cs" />
+    <Compile Include="History\HistoryQuery.cs" />
+    <Compile Include="History\HistoryService.cs" />
+    <Compile Include="History\IHistoryRepository.cs" />
+    <Compile Include="History\IHistoryService.cs" />
+    <Compile Include="Files\FileSystemRepository.cs" />
+    <Compile Include="Pictures\DatabasePicturesRepository.cs" />
+    <Compile Include="Pictures\ImageFormat.cs" />
+    <Compile Include="Pictures\ImageFormatHelper.cs" />
+    <Compile Include="Pictures\IPicturesRepository.cs" />
+    <Compile Include="Pictures\IPicturesService.cs" />
+    <Compile Include="Pictures\Picture.cs" />
+    <Compile Include="Pictures\PictureOrientation.cs" />
+    <Compile Include="Pictures\PictureQueries.cs" />
+    <Compile Include="Pictures\PicturesHelper.cs" />
+    <Compile Include="Pictures\PicturesQuery.cs" />
+    <Compile Include="Pictures\PicturesSearchQuery.cs" />
+    <Compile Include="Pictures\PicturesService.cs" />
+    <Compile Include="Pictures\PicturesSortingHelper.cs" />
+    <Compile Include="Pictures\PicturesSortOrder.cs" />
+    <Compile Include="Pictures\PictureTagRelation.cs" />
+    <Compile Include="Pictures\PictureUpdate.cs" />
+    <Compile Include="Pictures\SimilarPictureRelation.cs" />
+    <Compile Include="Rates\DatabaseRatesRepository.cs" />
+    <Compile Include="Rates\IRatesRepository.cs" />
+    <Compile Include="Rates\Rate.cs" />
+    <Compile Include="Rates\RatesQuery.cs" />
+    <Compile Include="Reports\DatabaseReportsRepository.cs" />
+    <Compile Include="Reports\IReportsRepository.cs" />
+    <Compile Include="Reports\IReportsService.cs" />
+    <Compile Include="Reports\Report.cs" />
+    <Compile Include="Reports\ReportResolutionStatus.cs" />
+    <Compile Include="Reports\ReportsService.cs" />
+    <Compile Include="Reports\ReportType.cs" />
+    <Compile Include="Reports\ReportUpdate.cs" />
+    <Compile Include="Tags\CachedTagsRepository.cs" />
+    <Compile Include="Tags\DatabaseTagsRepository.cs" />
+    <Compile Include="Tags\ITagsRepository.cs" />
+    <Compile Include="Tags\ITagsService.cs" />
+    <Compile Include="Tags\Tag.cs" />
+    <Compile Include="Tags\TagAlias.cs" />
+    <Compile Include="Tags\TagsParsingResult.cs" />
+    <Compile Include="Tags\TagsQuery.cs" />
+    <Compile Include="Tags\TagsRelation.cs" />
+    <Compile Include="Tags\TagsService.cs" />
+    <Compile Include="Tags\TagsSortOrder.cs" />
+    <Compile Include="Tags\TagType.cs" />
+    <Compile Include="Tags\TagUpdate.cs" />
+    <Compile Include="Users\DatabaseTicketsRepository.cs" />
+    <Compile Include="Users\DatabaseUsersRepository.cs" />
+    <Compile Include="Users\ITicketsRepository.cs" />
+    <Compile Include="Users\ITicketsService.cs" />
+    <Compile Include="Users\IUsersRepository.cs" />
+    <Compile Include="Users\RoleChangedEventArgs.cs" />
+    <Compile Include="Users\Ticket.cs" />
+    <Compile Include="Users\TicketsService.cs" />
+    <Compile Include="Users\FormsAuthenticationService.cs" />
+    <Compile Include="Users\IAuthenticationService.cs" />
+    <Compile Include="Users\IUsersService.cs" />
+    <Compile Include="Users\TicketType.cs" />
+    <Compile Include="Users\User.cs" />
+    <Compile Include="Users\UserRole.cs" />
+    <Compile Include="Users\UsersHelper.cs" />
+    <Compile Include="Users\UsersService.cs" />
+    <Compile Include="Users\UsersValidation.cs" />
+    <Compile Include="Pictures\PicturesSearchQueryParsers.cs" />
+    <Compile Include="Pictures\PictureAddingResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pictures\PicturesSearchQueryHelper.cs" />
+    <Compile Include="Users\UserUpdate.cs" />
+    <Compile Include="Utils\ByteHelper.cs" />
+    <Compile Include="Utils\EnumerableExtensions.cs" />
+    <Compile Include="Utils\GlobalizationHelper.cs" />
+    <Compile Include="Utils\HashHelper.cs" />
+    <Compile Include="Utils\ImagingHelper.cs" />
+    <Compile Include="Common\ModerationHelper.cs" />
+    <Compile Include="Tags\TagsHelper.cs" />
+    <Compile Include="Tags\QueryTagsParsers.cs" />
+    <Compile Include="Utils\IProgressIndicator.cs" />
+    <Compile Include="Utils\MailHelper.cs" />
+    <Compile Include="Utils\NumberHelper.cs" />
+    <Compile Include="Utils\PredicateBuilder.cs" />
+    <Compile Include="Utils\StringHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\db.sql" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

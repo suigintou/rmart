@@ -1,0 +1,10 @@
+﻿@model Tag
+
+@if (Model != null)
+{
+	<a href="@(ViewBag.LinkToTagDetails == true ? Url.Action("Details", new { id = Model.ID }) : Url.Gallery(TagsHelper.EncodeTagName(Model.Name)))"
+	   class="tag @Model.Type.ToString().ToLower()">@Model.Name</a>}
+else
+{
+	@TagsHelper.NotExistingTagName
+}

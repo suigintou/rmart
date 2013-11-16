@@ -1,0 +1,44 @@
+﻿@model RatesListModel
+@{
+	ViewBag.Title = PicturesResources.RatesPageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title <span class="badge">@Model.TotalCount</span></h1>
+</div>
+
+<table class="table table-striped table-bordered table-condensed">
+	<tr>
+		<th>@PicturesResources.RatesDateColumnName</th>
+		<th>@PicturesResources.RatesUserColumnName</th>
+		<th>@PicturesResources.RatesPictureColumnName</th>
+		<th>@PicturesResources.RatesScoreColumnName</th>
+	</tr>
+	@foreach (var r in Model.Rates)
+	{
+		<tr>
+			<td>
+				<time datetime="@r.Date.ToString(VisualizationHelper.ISODateTimeFormat)">
+					@r.Date.ToString(VisualizationHelper.DateTimeFormat)
+				</time>
+			</td>
+			<td>
+				@Html.Action("ShowUserName", "Account", new { id = r.UserID })
+			</td>
+			<td><a href="@Url.PictureViewer(r.PictureID)">@r.PictureID</a></td>
+			<td>@r.Score</td>
+		</tr>
+	}
+</table>
+
+@if (Model.TotalPages > 1)
+{
+	<div style="text-align: center;">
+		<ul class="pagination">
+			@Html.PageLinks(
+				p => Url.Action("Rates", new { user = Model.User, pictureID = Model.PictureID, score = Model.Score, p }),
+				Model.CurrentPage,
+				Model.TotalPages)
+		</ul>
+	</div>
+}

@@ -1,0 +1,79 @@
+﻿@model UploadModel
+@{
+	ViewBag.Title = UploadResources.UploadPageTitle;
+	ViewBag.ActivePage = NavigationTab.Upload;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<form action="@Url.Action("Index")" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+	@Html.ValidationSummary(true, UploadResources.CommonErrorMessage)
+
+	<div class="form-group">
+		<label for="Files" class="col-sm-2 control-label">@UploadResources.FileLabel</label>
+		<div class="col-sm-4">
+			<input type="file" name="Files" id="Files" class="form-control" multiple="multiple" accept="image/jpeg, image/png, image/gif" /> 
+			@Html.ValidationMessageFor(m => m.Files)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Url" class="col-sm-2 control-label">@UploadResources.UrlLabel</label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(m => m.Url, new { type = "url", placeholder = "http://", @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Url)
+			<p class="help-block">@UploadResources.SupportedFormatsInfo</p>
+			@if (Config.Default.MaxFileSize != null)
+			{
+				<p class="help-block">@string.Format(UploadResources.MaxFileSizeInfo, Config.Default.MaxFileSize.Value.ToInfoSizeString())</p>
+			}
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Tags" class="col-sm-2 control-label">@UploadResources.TagsLabel</label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(m => m.Tags, new { @class = "form-control tags-box", maxlength = "200", autocomplete="off" })
+			@Html.ValidationMessageFor(m => m.Tags)
+			<p class="help-block">@UploadResources.TagsInfo</p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Rating" class="col-sm-2 control-label">@UploadResources.RatingLabel</label>
+		<div class="col-sm-3">
+			@Html.DropDownListFor(m => m.Rating, VisualizationHelper.RatingsList(true, false, null), new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Rating)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Source" class="col-sm-2 control-label">@UploadResources.SourceLabel</label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(m => m.Source, new { type = "url", @class = "form-control", placeholder = "http://" })
+			@Html.ValidationMessageFor(m => m.Source)
+		</div>
+	</div>
+
+	@if (!Request.IsUserInRole(UserRole.User))
+	{
+		<div class="form-group">
+			<label for="recaptcha_response_field" class="col-sm-2 control-label">@SharedResources.CaptchaLabel</label>
+			<div class="col-sm-10">
+				@ReCaptcha.GetHtml(language: UICulture.Substring(0, 2), theme: "clean")
+				@Html.ValidationMessageFor(m => m.Captcha)
+				<p class="help-block">@SharedResources.CaptchaForAuthenticated</p>
+			</div>
+		</div>
+	}
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<input type="submit" class="btn btn-primary" value="@UploadResources.UploadButtonText" />
+		</div>
+	</div>
+
+</form>

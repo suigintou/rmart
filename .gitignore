@@ -1,0 +1,7 @@
+bin/
+obj/
+/packages/
+/RMArt.Web/App_Data/Thumbs/*
+/RMArt.Web/App_Data/Pictures/*
+*.suo
+*.user

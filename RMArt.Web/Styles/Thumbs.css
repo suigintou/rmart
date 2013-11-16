@@ -1,0 +1,105 @@
+﻿.thumbnail-list {
+	margin-left: -10px;
+	list-style: none;
+	padding: 0;
+}
+
+	.thumbnail-list > li {
+		display: block;
+		float: left;
+		margin-bottom: 20px;
+		margin-left: 10px;
+		position: relative;
+	}
+
+		.thumbnail-list > li.selected {
+			background-color: Highlight;
+		}
+
+			.thumbnail-list > li.selected * {
+				opacity: 0.8;
+			}
+
+		.thumbnail-list > li > .thumbnail {
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+
+@media (min-width: 1200px) {
+	.thumbnails {
+		margin-left: -18px;
+	}
+
+		.thumbnails > li {
+			margin-left: 18px;
+		}
+}
+
+.thumbnail.highlight {
+	border-color: red;
+}
+
+.thumb-checkbox {
+	position: absolute;
+	left: 6px;
+	bottom: 6px;
+	display: none;
+}
+
+.thumb-icons {
+	position: absolute;
+	right: 6px;
+	bottom: 6px;
+	padding: 0;
+	margin: 0;
+	line-height: 0;
+}
+
+	.thumb-icons > li {
+		list-style-type: none;
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+
+.thumb-icon-rating-unrated {
+	background: url(/Images/rating-unrated.png) no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.thumb-icon-rating-r15 {
+	background: url(/Images/rating-r15.png) no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.thumb-icon-rating-r18 {
+	background: url(/Images/rating-r18.png) no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.thumb-icon-rating-r18g {
+	background: url(/Images/rating-r18g.png) no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.thumb-icon-tagme {
+	background: url(/Images/status-tagme.png) no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.thumb-icon-pending {
+	background: url(/Images/status-pending.png) no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.thumb-icon-declined {
+	background: url(/Images/status-declined.png) no-repeat;
+	width: 16px;
+	height: 16px;
+}

@@ -1,0 +1,48 @@
+﻿@model ThumbnailsListModel
+
+<ul id="thumbs" class="thumbnail-list clearfix">
+	@foreach (var picture in Model.Pictures)
+{
+	<li style="width: @(Model.ThumbWidth + 10)px; height: @(Model.ThumbHeight + 10)px;">
+		@{
+			var tagsString = string.Join(", ", picture.Tags.Take(10).Select(t => t.Name));
+			var thumbSize = ImagingHelper.ThumbSize(picture.Width, picture.Height, Model.ThumbWidth, Model.ThumbHeight);
+		}
+		<a href="@Url.PictureViewer(picture.ID)"
+		   class="thumbnail"
+		   title="@VisualizationHelper.PictureDescription(picture.Format, picture.Width, picture.Height, picture.FileSize, picture.Rating, picture.Score, picture.RatesCount, tagsString)"
+		   data-id="@picture.ID"
+		   data-tag-ids="@string.Join(" ", picture.Tags.Select(t => t.ID))">
+			<img src="@Url.ThumbSrc(picture.ID, Model.ThumbSizePreset)" alt="@tagsString" style="width: @(thumbSize.Width)px; height: @(thumbSize.Height)px;" />
+		</a>
+		<input class="thumb-checkbox" type="checkbox" form="edit-form" name="ids" value="@picture.ID" />
+		<ul class="thumb-icons">
+			@if (Model.ShowIcons)
+			{
+				switch (picture.Rating)
+				{
+					case Rating.R15:
+						<li class="thumb-icon-rating-r15" title="@Rating.R15.GetDisplayName()"></li>break;
+					case Rating.R18:
+						<li class="thumb-icon-rating-r18" title="@Rating.R18.GetDisplayName()"></li>break;
+					case Rating.R18G:
+						<li class="thumb-icon-rating-r18g" title="@Rating.R18G.GetDisplayName()"></li>break;
+					case Rating.Unrated:
+						<li class="thumb-icon-rating-unrated" title="@Rating.Unrated.GetDisplayName()"></li>break;
+				}
+				if (picture.RequiresTagging || !picture.Tags.Any())
+				{
+					<li class="thumb-icon-tagme" title="@PicturesResources.SatusTagme"></li>
+				}
+				switch (picture.Status)
+				{
+					case ModerationStatus.Declined:
+						<li class="thumb-icon-declined" title="@PicturesResources.StatusDeclined"></li>break;
+					case ModerationStatus.Pending:
+						<li class="thumb-icon-pending" title="@PicturesResources.StatusPending"></li>break;
+				}
+			}
+		</ul>
+	</li>
+}
+</ul>

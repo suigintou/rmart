@@ -1,0 +1,61 @@
+﻿@model CreateReportModel
+@{
+	ViewBag.Title = ReportsResources.CreateReportPageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<form action="@Url.Action("Create")" method="post" class="form-horizontal">
+
+	@Html.HiddenFor(m => m.TargetType)
+	@Html.HiddenFor(m => m.TargetID)
+
+	@if (Model.TargetType != null && Model.TargetID != null)
+	{
+		<div class="form-group">
+			<label class="col-md-2 control-label">@ReportsResources.ObjectLabel</label>
+			<div class="col-md-10">
+				<p class="form-control-static">
+					@Html.Action("Target", "History", new { target = new ObjectReference(Model.TargetType.Value, Model.TargetID.Value)})
+				</p>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="ReportType" class="col-md-2 control-label">@ReportsResources.TypeLabel</label>
+			<div class="col-md-6">
+				@Html.DropDownListFor(m => m.ReportType, VisualizationHelper.ReportTypesList(), new { @class = "form-control" })
+				@Html.ValidationMessageFor(m => m.ReportType)
+			</div>
+		</div>
+	}
+
+	<div class="form-group">
+		<label for="Message" class="col-md-2 control-label">@ReportsResources.MessageLabel</label>
+		<div class="col-md-6">
+			<textarea id="Message" name="Message" class="form-control" rows="10" required="required" maxlength="2000">@Model.Message</textarea>
+			@Html.ValidationMessageFor(m => m.Message)
+			<p class="help-block">@ReportsResources.FeedbackHelpMessage</p>
+		</div>
+	</div>
+
+	@if (!Request.IsUserInRole(UserRole.User))
+	{
+		<div class="form-group">
+			<label for="recaptcha_response_field" class="col-md-2 control-label">@SharedResources.CaptchaLabel</label>
+			<div class="col-md-10">
+				@ReCaptcha.GetHtml(language: UICulture.Substring(0, 2), theme: "clean")
+				@Html.ValidationMessageFor(m => m.Captcha)
+				<p class="help-block">@SharedResources.CaptchaForAuthenticated</p>
+			</div>
+		</div>
+	}
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" class="btn btn-primary" />
+		</div>
+	</div>
+</form>

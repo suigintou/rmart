@@ -1,0 +1,66 @@
+﻿@{
+	ViewBag.Title = "Administer";
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<div style="width: 200px;">
+	<a href="@Url.Action("ManageUsers", "Account")" class="btn btn-default btn-block"><span class="glyphicon glyphicon-user"></span> Users</a>
+	<a href="@Url.Action("Index", "Content")" class="btn btn-default btn-block"><span class="glyphicon glyphicon-folder-open"></span> Content</a>
+	<a href="@Url.Action("Index", "Reports")" class="btn btn-default btn-block"><span class="glyphicon glyphicon-flag"></span> Reports</a>
+	<a href="@Url.Action("Rates", "Pictures")" class="btn btn-default btn-block"><span class="glyphicon glyphicon-heart"></span> Rates</a>
+</div>
+
+<hr />
+
+<div id="progress" style="display: none;">
+	<img src="@Url.Content("~/Images/ajax-loader.gif")" width="16" height="16" alt="" />
+	Processing. Please wait...
+</div>
+
+<ul class="vertical-menu">
+	<li>
+		@Ajax.ActionLink(
+			"Update picture cached tags",
+			"UpdatePictureCachedTags",
+			new AjaxOptions { Confirm = "Update picture cached tags?", LoadingElementId = "progress" })
+	</li>
+	<li>
+		@Ajax.ActionLink(
+			"Update picture rate aggregates",
+			"UpdatePictureRateAggregates",
+			new AjaxOptions { Confirm = "Recalc rate aggregates?", LoadingElementId = "progress" })
+	</li>
+	<li>
+		@Ajax.ActionLink(
+			"Delete declined pictures",
+			"DeleteDeclinedPictures",
+			new AjaxOptions { Confirm = "Delete declined pictures?", LoadingElementId = "progress" })
+	</li>
+	<li>
+		@Ajax.ActionLink(
+			"Update tag aggregates",
+			"UpdateTagAggregates",
+			new AjaxOptions { Confirm = "Recalc tag aggregates?", LoadingElementId = "progress" })
+	</li>
+	<li>
+		@Ajax.ActionLink(
+			"Delete declined tags",
+			"DeleteDeclinedTags",
+			new AjaxOptions { Confirm = "Delete declined tags?", LoadingElementId = "progress" })
+	</li>
+	<li>
+		@Ajax.ActionLink(
+			"Recalc file hashes",
+			"RecalcFileHashes",
+			new AjaxOptions { Confirm = "Recalc file hashes?", LoadingElementId = "progress" })
+	</li>
+	<li>
+		@Ajax.ActionLink(
+			"Recalc bitmap hashes",
+			"RecalcBitmapHashes",
+			new AjaxOptions { Confirm = "Recalc bitmap hashes?", LoadingElementId = "progress" })
+	</li>
+</ul>

@@ -1,0 +1,16 @@
+﻿@model CommentFormModel
+
+@if (Request.IsUserInRole(UserRole.User))
+{
+	<form action="@Url.Action("CreateMessage", "Discussions")" method="post" id="comment-form">
+		@Html.HiddenFor(_ => _.ParentType)
+		@Html.HiddenFor(_ => _.ParentID)
+		<input type="hidden" name="returnUrl" value="@(Request.RawUrl + "#comment-form")"/>
+		@Html.TextAreaFor(_ => _.Body, new { required = "required", maxlength = "500", rows="3", id="comment-textarea", @class="form-control" })
+		<input type="submit" value="@DiscussionsResources.SendButtonText" class="btn btn-default" style="margin-top: 10px;"/>
+	</form>
+}
+else
+{
+	<p>@DiscussionsResources.LogInForCommentMessage</p>
+}

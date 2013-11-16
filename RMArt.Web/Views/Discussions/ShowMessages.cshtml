@@ -1,0 +1,63 @@
+﻿@model CommentsListModel
+
+<ul class="media-list">
+	@foreach (var msg in Model.Messages)
+	{
+		<li id="message-@msg.ID" class="media">
+			<div class="pull-left">
+				@if (!msg.CanViewPrivateData)
+				{
+					<img class="media-object img-rounded" src="http://placehold.it/64x64" width="64" height="64" alt="" />
+				}
+				else
+				{
+					<img class="media-object img-rounded" src="@Gravatar.GetUrl(msg.CreatorEmeil, 64)" width="64" height="64" alt="">
+				}
+			</div>
+			<div class="media-body">
+				<div class="media-heading">
+					<span class="comment-author">
+						@Html.Action("ShowUserName", "Account", new { id = msg.CreatorID })
+					</span>
+					<a href="#@msg.ID" class="message-id">>>@msg.ID</a>
+					<span class="comment-date">
+						<time datetime="@msg.CreatedAt.ToString(VisualizationHelper.ISODateTimeFormat)" class="timeago">
+							@msg.CreatedAt.ToString(VisualizationHelper.DateTimeFormat) (UTC)
+						</time>
+					</span>
+				</div>
+
+				<p>@msg.Body</p>
+
+				@if (msg.Parent.Type == ObjectType.Picture && Model.WithPreview)
+				{
+					<div>
+						<a href="@Url.PictureViewer(msg.Parent.ID)" class="thumbnail" style="display: inline-block;">
+							<img src="@Url.ThumbSrc(msg.Parent.ID, 0)" alt="" />
+						</a>
+					</div>
+				}
+
+				@if (Model.CanModerate)
+				{
+					<form action="@Url.Action("SetStatus")" method="post" style="margin: 0;">
+						<input type="hidden" name="id" value="@msg.ID" />
+						<input type="hidden" name="returnUrl" value="@Request.RawUrl#comment-@msg.ID" />
+						@if (msg.Status != ModerationStatus.Accepted)
+						{
+							<button name="status" value="@ModerationStatus.Accepted" class="btn btn-success btn-xs">
+								<span class="glyphicon glyphicon-ok"></span> Show
+							</button>
+						}
+						@if (msg.Status != ModerationStatus.Declined)
+						{
+							<button name="status" value="@ModerationStatus.Declined" class="btn btn-danger btn-xs">
+								<span class="glyphicon glyphicon-remove"></span> Hide
+							</button>
+						}
+					</form>
+				}
+			</div>
+		</li>
+	}
+</ul>

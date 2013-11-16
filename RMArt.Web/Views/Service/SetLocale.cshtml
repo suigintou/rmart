@@ -1,0 +1,39 @@
+﻿@model SetLocaleModel
+@{
+	ViewBag.Title = ServiceResources.SetLocaleTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+@if (Model.IsSaved)
+{
+	<div class="alert alert-success">
+		@*<button type="button" class="close" data-dismiss="alert">&times;</button>*@
+		<span class="glyphicon glyphicon-ok"></span> @SharedResources.ChangesSuccessfullySavedMessage
+	</div>
+}
+
+<form action="@Url.Action("SetLocale")" method="post">
+	<label>@ServiceResources.SetLocalePrompt</label>
+	<div class="radio">
+		<label>
+			@Html.RadioButtonFor(m => m.Locale, RMArt.Web.GlobalizationHelper.AutodetectCultureSetting)
+			@ServiceResources.AutoDetectLocale
+		</label>
+	</div>
+	<div class="radio">
+		<label>
+			@Html.RadioButtonFor(m => m.Locale, "en")
+			English
+		</label>
+	</div>
+	<div class="radio">
+		<label>
+			@Html.RadioButtonFor(m => m.Locale, "ru")
+			Русский
+		</label>
+	</div>
+	<input type="submit" class="btn btn-primary" value="@ServiceResources.SetLocaleButtonText" />
+</form>

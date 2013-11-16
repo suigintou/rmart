@@ -1,0 +1,99 @@
+﻿@model GalleryModel
+
+<div role="toolbar" class="clearfix">
+	<form action="@Url.Action("Search")" method="get" class="input-group pull-left" role="search" style="margin-right: 5px; max-width: 360px;">
+		<input type="search" name="q" value="@Model.Query" class="form-control" title="@PicturesResources.SearchBoxHint"/>
+		<input type="hidden" name="sortBy" value="@Model.SortBy"/>
+		<span class="input-group-btn">
+		<button class="btn btn-default" title="@PicturesResources.SearchButtonText"><i class="glyphicon glyphicon-search"></i></button>
+		<button name="construct" value="@bool.TrueString" class="btn btn-default" title="@PicturesResources.AdvancedSearchLinkText">...</button>
+		</span>
+	</form>
+
+	<div class="btn-group pull-left req-js" style="margin-right: 5px;">
+		<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="@PicturesResources.SortingBoxHint">
+			<span class="glyphicon glyphicon-sort"></span>
+			@Model.SortBy.GetDisplayName()
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li class="@(Model.SortBy == PicturesSortOrder.Newest ? "active" : "")">
+				<a href="@Url.Gallery(Model.Query, PicturesSortOrder.Newest)" rel="nofollow">@PicturesSortOrder.Newest.GetDisplayName()</a>
+			</li>
+			<li class="@(Model.SortBy == PicturesSortOrder.Oldest ? "active" : "")">
+				<a href="@Url.Gallery(Model.Query, PicturesSortOrder.Oldest)" rel="nofollow">@PicturesSortOrder.Oldest.GetDisplayName()</a>
+			</li>
+			<li class="@(Model.SortBy == PicturesSortOrder.TopRated ? "active" : "")">
+				<a href="@Url.Gallery(Model.Query, PicturesSortOrder.TopRated)" rel="nofollow">@PicturesSortOrder.TopRated.GetDisplayName()</a>
+			</li>
+			<li class="@(Model.SortBy == PicturesSortOrder.HighestResolution ? "active" : "")">
+				<a href="@Url.Gallery(Model.Query, PicturesSortOrder.HighestResolution)" rel="nofollow">@PicturesSortOrder.HighestResolution.GetDisplayName()</a>
+			</li>
+			<li class="@(Model.SortBy == PicturesSortOrder.LowestResolution ? "active" : "")">
+				<a href="@Url.Gallery(Model.Query, PicturesSortOrder.LowestResolution)" rel="nofollow">@PicturesSortOrder.LowestResolution.GetDisplayName()</a>
+			</li>
+			<li class="@(Model.SortBy == PicturesSortOrder.Random ? "active" : "")">
+				<a href="@Url.Gallery(Model.Query, PicturesSortOrder.Random, addRnd: true)" rel="nofollow">@PicturesSortOrder.Random.GetDisplayName()</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="btn-toolbar pull-right">
+		@if(Request.IsAuthenticated)
+		{
+			<noscript>
+				<div class="btn-group">
+					<a href="@Url.Action("ChangeMaxRating", new { returnUrl = Request.RawUrl })" class="btn btn-default" title="@PicturesResources.MaxRating">
+						<span class="glyphicon glyphicon-warning-sign"></span> @Model.MaxRating.GetDisplayName()@(Model.ShowUnrated ? " + " + Rating.Unrated.GetDisplayName() : "")
+					</a>
+				</div>
+			</noscript>
+
+			<div class="btn-group req-js">
+				<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="@PicturesResources.MaxRating">
+					<span class="glyphicon glyphicon-warning-sign"></span> @Model.MaxRating.GetDisplayName()@(Model.ShowUnrated ? " + " + Rating.Unrated.GetDisplayName() : "")
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu pull-right" role="menu">
+					<li class="@(Model.MaxRating == Rating.SFW ? "active" : "")">
+						<a href="@Url.Action("SetOptions", new { maxRating = Rating.SFW, returnUrl = Request.RawUrl })" rel="nofollow">@Rating.SFW.GetDisplayName()</a>
+					</li>
+					<li class="@(Model.MaxRating == Rating.R15 ? "active" : "")">
+						<a href="@Url.Action("SetOptions", new { maxRating = Rating.R15, returnUrl = Request.RawUrl })" rel="nofollow">@Rating.R15.GetDisplayName()</a>
+					</li>
+					<li class="@(Model.MaxRating == Rating.R18 ? "active" : "")">
+						<a href="@Url.Action("SetOptions", new { maxRating = Rating.R18, returnUrl = Request.RawUrl })" rel="nofollow">@Rating.R18.GetDisplayName()</a>
+					</li>
+					<li class="@(Model.MaxRating == Rating.R18G ? "active" : "")">
+						<a href="@Url.Action("SetOptions", new { maxRating = Rating.R18G, returnUrl = Request.RawUrl })" rel="nofollow">@Rating.R18G.GetDisplayName()</a>
+					</li>
+					<li class="divider"></li>
+					<li class="@(Model.ShowUnrated ? "active" : "")">
+						<a href="@Url.Action("SetOptions", new { showUnrated = !Model.ShowUnrated, returnUrl = Request.RawUrl })" rel="nofollow">@PicturesResources.ShowUnrated</a>
+					</li>
+				</ul>
+			</div>
+		}
+
+		@if(Model.CanModerate)
+		{
+			<div class="btn-group req-js">
+				<button id="select-mode-button" class="btn btn-default" data-toggle="button" title="@PicturesResources.SelectModeButtonText">
+					<span class="glyphicon glyphicon-check"></span>
+				</button>
+				<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+				<ul class="dropdown-menu pull-right" role="menu">
+					<li role="menuitem"><a href="#" id="select-all-button"><span class="glyphicon glyphicon-ok"></span> @PicturesResources.SelectAllButtonText</a></li>
+					<li role="menuitem"><a href="#" id="deselect-all-button"><span class="glyphicon glyphicon-remove"></span> @PicturesResources.DeselectAllButtonText</a></li>
+				</ul>
+			</div>
+
+			<div class="btn-group req-js">
+				<button id="edit-button" class="btn btn-default" disabled="disabled" data-toggle="modal" data-target="#edit" title="@PicturesResources.EditButtonText">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</div>
+		}
+	</div>
+
+</div>

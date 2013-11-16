@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="AccountLogin" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="AccountName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="AccountPageTitle" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="InvalidEmailMessage" xml:space="preserve">
+    <value>Некорректный email.</value>
+  </data>
+  <data name="InvalidLoginMessage" xml:space="preserve">
+    <value>Некорректный логин.</value>
+  </data>
+  <data name="LogInButtonText" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="LoginOrEmail" xml:space="preserve">
+    <value>Логин или email</value>
+  </data>
+  <data name="LogInPageTitle" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Старый пароль</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PasswordsDoNotMatchMessage" xml:space="preserve">
+    <value>Пароль и его подтверждение не совпадают.</value>
+  </data>
+  <data name="CreateAccountLinkText" xml:space="preserve">
+    <value>Создать аккаунт</value>
+  </data>
+  <data name="RegistrationPageTitle" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Запомнить меня</value>
+  </data>
+  <data name="SavingProgressText" xml:space="preserve">
+    <value>Сохранение...</value>
+  </data>
+  <data name="StatisticsPicturesUploaded" xml:space="preserve">
+    <value>Изображений загружено:</value>
+  </data>
+  <data name="StatisticsRatesGiven" xml:space="preserve">
+    <value>Оценок поставлено:</value>
+  </data>
+  <data name="IncorrectIdentityOrPasswordMessage" xml:space="preserve">
+    <value>Неверные идентификационные данные или пароль.</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Обязательное поле.</value>
+  </data>
+  <data name="SaveButtonText" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="EmailTakenMessage" xml:space="preserve">
+    <value>Пользователь с таким email уже зарегистрирован.</value>
+  </data>
+  <data name="InvalidNameMessage" xml:space="preserve">
+    <value>Некорректное имя.</value>
+  </data>
+  <data name="LoginTakenMessage" xml:space="preserve">
+    <value>Данный логин уже занят.</value>
+  </data>
+  <data name="ChangePasswordTitle" xml:space="preserve">
+    <value>Изменение пароля</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="AccountSettingsPageTitle" xml:space="preserve">
+    <value>Настройки аккаунта</value>
+  </data>
+  <data name="EditProfilePageTitle" xml:space="preserve">
+    <value>Редактирование профиля</value>
+  </data>
+  <data name="InvalidPasswordMessage" xml:space="preserve">
+    <value>Некорректный пароль.</value>
+  </data>
+  <data name="AccountSettings" xml:space="preserve">
+    <value>Настройки аккаунта</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Редактировать профиль</value>
+  </data>
+  <data name="PrivateProfile" xml:space="preserve">
+    <value>Приватный профиль</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="ProfileIsPrivateMessage" xml:space="preserve">
+    <value>Пользователь сделал свой профиль приватным.</value>
+  </data>
+  <data name="RegistrationDate" xml:space="preserve">
+    <value>Дата регистрации:</value>
+  </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Аноним</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Избранное</value>
+  </data>
+  <data name="StatisticsPicturesFavorited" xml:space="preserve">
+    <value>Избранных изображений:</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Подтвердите новый пароль</value>
+  </data>
+  <data name="WrongPasswordMessage" xml:space="preserve">
+    <value>Неверный пароль.</value>
+  </data>
+  <data name="PasswordRecoveryPageTitle" xml:space="preserve">
+    <value>Восстановление пароля</value>
+  </data>
+  <data name="RecoverPasswordLinkText" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="PasswordRecoveryEmailSentHeader" xml:space="preserve">
+    <value>Дальнйшие интсрукции были отправлены на ваш email</value>
+  </data>
+  <data name="PasswordRecoveryEmailSentMessage" xml:space="preserve">
+    <value>Пожалуйста, проверьте почту. Если вы не получили сообщение через одну-две минуты - повторите попытку позже.</value>
+  </data>
+  <data name="PasswordRecoveryMessageBody" xml:space="preserve">
+    <value>Поступил запрос на восстановление пароля к вашему аккаунту.
+
+Если запрос был сделан вами, пожалуйста установите новый пароль, перейдя по этой ссылке:
+{0}
+
+Если вы не хотите менять пароль - просто проигнорируйте данное сообщение.</value>
+  </data>
+  <data name="PasswordRecoveryMessageSubject" xml:space="preserve">
+    <value>Восстановление пароля к аккаунту {0}</value>
+  </data>
+  <data name="RegisterButtonText" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="EmailConfirmationHeader" xml:space="preserve">
+    <value>Пожалуйста, подтвердите указанный вами email</value>
+  </data>
+  <data name="EmailConfirmationMessage" xml:space="preserve">
+    <value>Проверочное сообщение отправлено на адрес {0}</value>
+  </data>
+  <data name="EmailConfirmationPageTitle" xml:space="preserve">
+    <value>Подтверждение email</value>
+  </data>
+  <data name="EmailConfirmationResendLinkText" xml:space="preserve">
+    <value>Отправить сообщение снова или изменить email</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>Изменить email (не обязательно)</value>
+  </data>
+  <data name="EmailConfirmationMessageBody" xml:space="preserve">
+    <value>Здравствуйте, {0}.
+
+Для подтверждения регистрации на {1}, пожалуйста, перейдите по указанной ссылке:
+{2}</value>
+  </data>
+  <data name="EmailConfirmationMessageSubject" xml:space="preserve">
+    <value>Подтверждения регистрации на {0}</value>
+  </data>
+  <data name="EmailAlreadyConfirmedMessage" xml:space="preserve">
+    <value>Этот аккаунт уже подтвержден.</value>
+  </data>
+  <data name="AccountAvatar" xml:space="preserve">
+    <value>Аватар</value>
+  </data>
+  <data name="AccountAvatarChangeMessage" xml:space="preserve">
+    <value>Сменить</value>
+  </data>
+  <data name="AccountAvatarCreateMessage" xml:space="preserve">
+    <value>Создать аватар</value>
+  </data>
+  <data name="AccountAvatarYouAvatarOn" xml:space="preserve">
+    <value> на</value>
+  </data>
+</root>

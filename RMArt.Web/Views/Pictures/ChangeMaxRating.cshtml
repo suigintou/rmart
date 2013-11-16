@@ -1,0 +1,23 @@
+﻿@model ChangeMaxRatingModel
+@{
+	ViewBag.Title = PicturesResources.ChangeMaxRatingPageTitle;
+}
+
+<div class="page-header">
+	<h1>@PicturesResources.ChangeMaxRatingPageTitle</h1>
+</div>
+	
+<form action="@Url.Action("SetOptions")" method="post">
+	@Html.HiddenFor(m => m.ReturnUrl)
+
+	<label class="radio">@Html.RadioButtonFor(m => m.MaxRating, Rating.SFW) @Rating.SFW.GetDisplayName()</label>
+	<label class="radio">@Html.RadioButtonFor(m => m.MaxRating, Rating.R15) @Rating.R15.GetDisplayName()</label>
+	<label class="radio">@Html.RadioButtonFor(m => m.MaxRating, Rating.R18) @Rating.R18.GetDisplayName()</label>
+	<label class="radio">@Html.RadioButtonFor(m => m.MaxRating, Rating.R18G) @Rating.R18G.GetDisplayName()</label>
+
+	<label class="checkbox">@Html.CheckBoxFor(m => m.ShowUnrated) @PicturesResources.ShowUnrated</label>
+
+	<div class="form-actions">
+		<input type="submit" class="btn btn-primary" value="@PicturesResources.SaveButtonText"/>
+	</div>
+</form>

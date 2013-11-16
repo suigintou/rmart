@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Report>
+@{
+	ViewBag.Title = ReportsResources.IndexPageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<ul class="header-list">
+	@foreach(var report in Model)
+	{
+		<li>
+			<div class="header">
+				<time datetime="@report.CreatedAt.ToString(VisualizationHelper.ISODateTimeFormat)" class="pull-right" style="color: gray;">
+					@report.CreatedAt.ToString(VisualizationHelper.DateTimeFormat) (UTC)
+				</time>
+				<strong>@report.ReportType.GetDisplayName()</strong> |
+				@if (report.TargetType != null)
+				{
+					@Html.Action("Target", "History", new { target = new ObjectReference(report.TargetType.Value, report.TargetID.Value) }) @:|
+				}
+				<em>
+					@Html.Action("ShowUserName", "Account", new { id = report.CreatedBy })
+				</em>
+			</div>
+			<div class="content">
+				<pre>@report.Message</pre>
+			</div>
+		</li>
+	}
+</ul>

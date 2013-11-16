@@ -1,0 +1,9 @@
+﻿{
+	"name": "rmart.org uploader",
+	"version": "0.3",
+	"manifest_version": 2,
+	"permissions": ["contextMenus"],
+	"background": {
+		"scripts": ["background.js"]
+	}
+}

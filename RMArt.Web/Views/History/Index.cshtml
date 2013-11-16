@@ -1,0 +1,82 @@
+﻿@model HistoryModel
+@{
+	ViewBag.Title = HistoryResources.PageTitle;
+	ViewBag.ActivePage = NavigationTab.History;
+	if (Model.CurrentPage > 1)
+	{
+		ViewBag.PrevPageUrl = Url.History(Model.TargetType, Model.TargetID, Model.ActionType, Model.User, Model.CurrentPage - 1);
+	}
+	if (Model.HasMorePages)
+	{
+		ViewBag.NextPageUrl = Url.History(Model.TargetType, Model.TargetID, Model.ActionType, Model.User, Model.CurrentPage + 1);
+	}
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<ul class="header-list">
+	@foreach (var actionGroup in Model.Groups)
+	{
+		<li>
+			<div class="header">
+				<div class="pull-right" style="color: gray;">
+					<time datetime="@actionGroup.EndTime.ToString(VisualizationHelper.ISODateTimeFormat)" class="timeago">
+						@(actionGroup.StartTime.ToString(VisualizationHelper.DateTimeFormat) + " - " +
+							(actionGroup.StartTime.Date != actionGroup.EndTime.Date
+								? actionGroup.EndTime.ToString(VisualizationHelper.DateTimeFormat)
+								: actionGroup.EndTime.ToString(VisualizationHelper.TimeFormat))) (UTC)
+					</time>
+				</div>
+				@Html.Action("ShowUserName", "Account", new { id = actionGroup.UserID })
+			</div>
+			<table class="content associative-list">
+				@foreach (var action in actionGroup.Actions)
+				{
+					<tr>
+						<td class="key">
+							<span class="action-target" data-type="@action.TargetType" data-id="@action.TargetID">
+								@Html.Action("Target", new { target = new ObjectReference(action.TargetType, action.TargetID) })
+							</span>
+						</td>
+						<td class="value">
+							<ul class="change-list">
+								@foreach (var change in action.Changes)
+								{
+									<li class="history-event @(change.NextEventID != null ? "overriden" : "")" title="@change.Date" data-id="@change.ID" data-overridenby="@change.NextEventID">
+										@Html.Action("Event", new { ev =change })
+									</li>
+								}
+							</ul>
+							@if (!string.IsNullOrEmpty(action.Comment))
+							{
+								<div class="action-comment">
+									@action.Comment
+								</div>
+							}
+						</td>
+					</tr>
+				}
+			</table>
+		</li>
+	}
+</ul>
+
+@if (Model.CurrentPage > 1 || Model.HasMorePages)
+{
+	<ul class="pager">
+		@if (Model.CurrentPage > 1)
+		{
+			<li class="previous">
+				<a href="@ViewBag.PrevPageUrl">&larr; @HistoryResources.PrevPageLink</a>
+			</li>
+		}
+		@if (Model.HasMorePages)
+		{
+			<li class="next">
+				<a href="@ViewBag.NextPageUrl">@HistoryResources.NextPageLink &rarr;</a>
+			</li>
+		}
+	</ul>
+}

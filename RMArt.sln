@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMArt.Core", "RMArt.Core\RMArt.Core.csproj", "{CEAED1E0-73A6-44D2-A9CC-B09C8136B03C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMArt.Core.UnitTests", "RMArt.Core.UnitTests\RMArt.Core.UnitTests.csproj", "{6A7F69F7-87BE-40EE-9C86-3C39442AA782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMArt.Web", "RMArt.Web\RMArt.Web.csproj", "{AB1C5D82-D98E-4074-BEA1-63314B5568C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEAED1E0-73A6-44D2-A9CC-B09C8136B03C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEAED1E0-73A6-44D2-A9CC-B09C8136B03C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEAED1E0-73A6-44D2-A9CC-B09C8136B03C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEAED1E0-73A6-44D2-A9CC-B09C8136B03C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7F69F7-87BE-40EE-9C86-3C39442AA782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7F69F7-87BE-40EE-9C86-3C39442AA782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7F69F7-87BE-40EE-9C86-3C39442AA782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7F69F7-87BE-40EE-9C86-3C39442AA782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB1C5D82-D98E-4074-BEA1-63314B5568C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB1C5D82-D98E-4074-BEA1-63314B5568C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB1C5D82-D98E-4074-BEA1-63314B5568C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB1C5D82-D98E-4074-BEA1-63314B5568C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

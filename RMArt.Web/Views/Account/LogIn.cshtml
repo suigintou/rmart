@@ -1,0 +1,49 @@
+﻿@model LogInModel
+@{
+	ViewBag.Title = AccountResources.LogInPageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		@using (Html.BeginForm())
+		{
+			@Html.ValidationSummary(true, SharedResources.UnsuccessfulOperationMessage)
+
+			@Html.HiddenFor(m => m.ReturnUrl)
+			
+			<div class="form-group">
+				<label for="LoginOrEmail">@AccountResources.LoginOrEmail</label>
+				@Html.TextBoxFor(m => m.LoginOrEmail, new { required = "required", @class = "form-control" })
+			</div>
+			
+			<div class="form-group">
+				<label for="Password">@AccountResources.Password</label>
+				@Html.PasswordFor(m => m.Password, new { required = "required", @class = "form-control" })
+			</div>
+			
+			<div class="form-group">
+				<div class="checkbox">
+					<label>
+						@Html.CheckBoxFor(m => m.Remember)
+						@AccountResources.Remember
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" class="btn btn-lg btn-primary btn-block" value="@AccountResources.LogInButtonText" />
+			</div>
+		}
+	</div>
+
+	<div class="col-md-offset-4 col-md-4" style="text-align: right;">
+		<ul class="vertical-menu">
+			<li><a href="@Url.Action("Registration")" class="btn btn-success btn-lg btn-block">@AccountResources.CreateAccountLinkText</a></li>
+			<li><a href="@Url.Action("PasswordRecovery")" class="btn btn-default btn-lg btn-block">@AccountResources.RecoverPasswordLinkText</a></li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,157 @@
+﻿@model SearchModel
+@{
+	ViewBag.Title = SearchResources.PageTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<form action="@Url.Action("Search")" method="post" class="form-horizontal">
+
+	<div class="form-group">
+		<label for="ReqiredTags" class="col-md-2 control-label">@SearchResources.RequiredTags</label>
+		<div class="col-md-8">
+			@Html.TextBoxFor(m => m.ReqiredTags, new { @class = "tags-box form-control", autocomplete = "off" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="ExcldedTags" class="col-md-2 control-label">@SearchResources.ExcludedTags</label>
+		<div class="col-md-8">
+			@Html.TextBoxFor(m => m.ExcldedTags, new { @class = "tags-box form-control", autocomplete = "off" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-md-2 control-label">@SearchResources.Width</label>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.MinWidth, new { type = "number", min = "1", @class = "form-control", placeholder = "min" })
+		</div>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.MaxWidth, new { type = "number", min = "1", @class = "form-control", placeholder = "max" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-md-2 control-label">@SearchResources.Height</label>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.MinHeight, new { type = "number", min = "1", @class = "form-control", placeholder = "min" })
+		</div>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.MaxHeight, new { type = "number", min = "1", @class = "form-control", placeholder = "max" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-md-2 control-label">@SearchResources.Orientation</label>
+		<div class="col-md-10">
+			<label class="radio-inline">
+				<input type="radio" name="Orientation" value="" checked="@(Model.Orientation == null)"/>
+				@PicturesResources.OrientationAny
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="Orientation"  value="@PictureOrientation.Landscape.ToString()" checked="@(Model.Orientation == PictureOrientation.Landscape)"/>
+				@PictureOrientation.Landscape.GetDisplayName()
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="Orientation"  value="@PictureOrientation.Portrait.ToString()" checked="@(Model.Orientation == PictureOrientation.Portrait)"/>
+				@PictureOrientation.Portrait.GetDisplayName()
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="Orientation"  value="@PictureOrientation.Square.ToString()" checked="@(Model.Orientation == PictureOrientation.Square)"/>
+				@PictureOrientation.Square.GetDisplayName()
+			</label>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-md-2 control-label">@SearchResources.UploadDate</label>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.StartDate, new { type = "datetime", @class = "form-control", placeholder = SearchResources.StartDate })
+		</div>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.EndDate, new { type = "datetime", @class = "form-control", placeholder = SearchResources.EndDate })
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Uploader" class="col-md-2 control-label">@SearchResources.Uploader</label>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.Uploader, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Uploader)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="FavoritedBy" class="col-md-2 control-label">@SearchResources.FavoritedBy</label>
+		<div class="col-md-2">
+			@Html.TextBoxFor(m => m.FavoritedBy, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.FavoritedBy)
+		</div>
+	</div>
+
+	@if(Request.IsAuthenticated)
+	{
+		<div class="form-group">
+			<label class="col-md-2 control-label">@SearchResources.Rating</label>
+			<div class="col-md-10">
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedRatings" value="@Rating.SFW.ToString()" checked="@Model.AllowedRatings.Contains(Rating.SFW)"/>
+					@Rating.SFW.GetDisplayName()
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedRatings" value="@Rating.R15.ToString()" checked="@Model.AllowedRatings.Contains(Rating.R15)"/>
+					@Rating.R15.GetDisplayName()
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedRatings" value="@Rating.R18.ToString()" checked="@Model.AllowedRatings.Contains(Rating.R18)"/>
+					@Rating.R18.GetDisplayName()
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedRatings" value="@Rating.R18G.ToString()" checked="@Model.AllowedRatings.Contains(Rating.R18G)"/>
+					@Rating.R18G.GetDisplayName()
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedRatings" value="@Rating.Unrated.ToString()" checked="@Model.AllowedRatings.Contains(Rating.Unrated)"/>
+					@Rating.Unrated.GetDisplayName()
+				</label>
+			</div>
+		</div>
+	}
+
+	@if (Request.IsUserInRole(UserRole.Moderator))
+	{
+		<div class="form-group">
+			<label class="col-md-2 control-label">@SearchResources.Status</label>
+			<div class="col-md-10">
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedStatuses" value="@ModerationStatus.Accepted.ToString()" checked="@Model.AllowedStatuses.Contains(ModerationStatus.Accepted)"/>
+					@ModerationStatus.Accepted.GetDisplayName()
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedStatuses" value="@ModerationStatus.Pending.ToString()" checked="@Model.AllowedStatuses.Contains(ModerationStatus.Pending)"/>
+					@ModerationStatus.Pending.GetDisplayName()
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="AllowedStatuses" value="@ModerationStatus.Declined.ToString()" checked="@Model.AllowedStatuses.Contains(ModerationStatus.Declined)"/>
+					@ModerationStatus.Declined.GetDisplayName()
+				</label>
+			</div>
+		</div>
+	}
+	
+	<div class="form-group">
+		<label for="SortBy" class="col-md-2 control-label">@SearchResources.SortBy</label>
+		<div class="col-md-3">
+			@Html.DropDownListFor(m => m.SortBy, VisualizationHelper.SortBySelectList(Model.SortBy), new { @class = "form-control" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" class="btn btn-primary" value="@SearchResources.SearchButtonText" />
+		</div>
+	</div>
+
+</form>

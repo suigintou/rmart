@@ -1,0 +1,13 @@
+﻿@model IEnumerable<DiscussionMessage>
+@{
+	ViewBag.Title = DiscussionsResources.Title;
+	ViewBag.ActivePage = NavigationTab.Discussions;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+@Html.Action("CommentForm", new { parentType = ObjectType.Message, parentID = 0 })
+<hr />
+@Html.Action("ShowMessages", new { withPreview = true })

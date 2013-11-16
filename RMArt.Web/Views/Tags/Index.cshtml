@@ -1,0 +1,117 @@
+﻿@model TagsListModel
+@{
+	ViewBag.Title = TagsResources.PageTitle;
+	ViewBag.ActivePage = NavigationTab.Tags;
+	if (Model.CurrentPage > 1)
+	{
+		ViewBag.PrevPageUrl = Url.Tags(Model.Query, Model.TagType, Model.Status, Model.SortBy, Model.CurrentPage - 1);
+	}
+	if (Model.CurrentPage < Model.TotalPages)
+	{
+		ViewBag.NextPageUrl = Url.Tags(Model.Query, Model.TagType, Model.Status, Model.SortBy, Model.CurrentPage + 1);
+	}
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title <span class="badge">@Model.TotalCount</span></h1>
+</div>
+
+<form action="@Url.Action("Index")" method="get" class="form-inline" role="search" style="margin: 15px 0;">
+	<div class="form-group">
+		<label for="q">@TagsResources.FilterLabel</label>
+		<input type="search" name="q" value="@Model.Query" class="form-control" style="width: 250px;"/>
+		
+	</div>
+	<div class="form-group">
+		<label for="type">@TagsResources.TypeField:</label>
+		@Html.DropDownList("type", VisualizationHelper.TagTypesList(Model.TagType, TagsResources.TypeAny), new { style = "width: 120px;", @class = "form-control" })
+	</div>
+	@if (Model.CanModerate)
+	{
+		<div class="form-group">
+			<label for="status">Status:</label>
+			@Html.DropDownList("status", VisualizationHelper.ModerationStatusesList(true, PicturesResources.StatusAny, Model.Status), new { style = "width: 100px;", @class = "form-control" })
+		</div>
+	}
+	<div class="form-group">
+		<label for="sortBy">@TagsResources.SortByLabel</label>
+		@Html.DropDownList("sortBy", VisualizationHelper.TagsSortOrderList(Model.SortBy), new { style = "width: 150px;", @class = "form-control" })
+	</div>
+	<button class="btn btn-default" title="@TagsResources.SearchButton"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+
+<table class="table table-striped table-bordered table-condensed">
+	<tr>
+		<th>@TagsResources.NameField</th>
+		<th>@TagsResources.TypeField</th>
+		<th>@TagsResources.ParentsField</th>
+		<th>@TagsResources.AliasesField</th>
+		<th>@TagsResources.CountField</th>
+	</tr>
+	@foreach (var t in Model.Tags)
+	{
+		<tr>
+			<td>
+				@if (Model.CanModerate)
+				{
+					<input type="checkbox" name="ids" value="@t.ID" form="moderation-form"/>
+				}
+				@switch (t.Status)
+				{
+					case ModerationStatus.Pending:
+						<div class="thumb-icon-pending" style="display: inline-block" title="@PicturesResources.StatusPending"></div>break;
+					case ModerationStatus.Declined:
+						<div class="thumb-icon-declined" style="display: inline-block" title="@PicturesResources.StatusDeclined"></div>break;
+				}
+				@Html.Action("ShowTag", new { id = t.ID, linkToTagDetails = true })
+			</td>
+			<td>@t.Type.GetDisplayName()</td>
+			<td>@Html.Action("ShowTags", new { ids = t.ParentIDs, linkToTagDetails = true })</td>
+			<td>@string.Join(", ", t.AliasNames)</td>
+			<td><a href="@Url.Gallery(TagsHelper.EncodeTagName(t.Name))">@t.UsageCount</a></td>
+		</tr>
+	}
+</table>
+
+@if (Model.TotalPages > 1)
+{
+	<div style="text-align: center;">
+		<ul class="pagination">
+			@Html.PageLinks(
+				p => Url.Tags(Model.Query, Model.TagType, Model.Status, Model.SortBy, p),
+				Model.CurrentPage,
+				Model.TotalPages)
+		</ul>
+	</div>
+}
+
+@if (Model.CanModerate)
+{
+	<h2>@SharedResources.EditTitle</h2>
+
+	<form action="@Url.Action("Edit")" method="post" id="moderation-form" class="form-horizontal">
+
+		<input type="hidden" name="ReturnUrl" value="@Request.RawUrl" />
+
+		<div class="form-group">
+			<label for="type" class="col-sm-2 control-label">@TagsResources.TypeField</label>
+			<div class="col-sm-3">
+				@Html.DropDownList("type", VisualizationHelper.TagTypesList(PicturesResources.DoNotChange), new { @class = "form-control" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="status" class="col-sm-2 control-label">@PicturesResources.SetStatusLabel</label>
+			<div class="col-sm-3">
+				@Html.DropDownList("status", VisualizationHelper.ModerationStatusesList(true, PicturesResources.DoNotChange), new { @class = "form-control" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" class="btn btn-danger" value="Moderate" />
+			</div>
+		</div>
+
+	</form>
+}

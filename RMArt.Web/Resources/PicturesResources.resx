@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DeselectAllButtonText" xml:space="preserve">
+    <value>Deselect all</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>No results for your query.</value>
+  </data>
+  <data name="RelatedTagsTitle" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="SelectAllButtonText" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="PictureNotExistsMessage" xml:space="preserve">
+    <value>Picture not exists.</value>
+  </data>
+  <data name="SortingRandom" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="SearchButtonText" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="AdvancedSearchLinkText" xml:space="preserve">
+    <value>Advanced search</value>
+  </data>
+  <data name="SearchBoxHint" xml:space="preserve">
+    <value>Search query</value>
+  </data>
+  <data name="SortingBoxHint" xml:space="preserve">
+    <value>Sort by</value>
+  </data>
+  <data name="SortingHighestResolution" xml:space="preserve">
+    <value>Highest resolution</value>
+  </data>
+  <data name="SortingLowestResolution" xml:space="preserve">
+    <value>Lowest resolution</value>
+  </data>
+  <data name="SortingNewest" xml:space="preserve">
+    <value>Newest</value>
+  </data>
+  <data name="SortingOldest" xml:space="preserve">
+    <value>Oldest</value>
+  </data>
+  <data name="SortingTopRated" xml:space="preserve">
+    <value>Top rated</value>
+  </data>
+  <data name="SatusTagme" xml:space="preserve">
+    <value>Not tagged</value>
+  </data>
+  <data name="ExcludeTagHint" xml:space="preserve">
+    <value>Remove from search</value>
+  </data>
+  <data name="IncludeTagHint" xml:space="preserve">
+    <value>Add to search</value>
+  </data>
+  <data name="FavoriteButtonText" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="MetadataTags" xml:space="preserve">
+    <value>Tags:</value>
+  </data>
+  <data name="PictureDeclinedModerationMessage" xml:space="preserve">
+    <value>Picture is declined by moderator.</value>
+  </data>
+  <data name="PicturePendingModerationMessage" xml:space="preserve">
+    <value>Picture is awaiting moderation.</value>
+  </data>
+  <data name="Rate1" xml:space="preserve">
+    <value>+1</value>
+  </data>
+  <data name="Rate2" xml:space="preserve">
+    <value>+2</value>
+  </data>
+  <data name="Rate3" xml:space="preserve">
+    <value>+3</value>
+  </data>
+  <data name="Rate0" xml:space="preserve">
+    <value>Not rated</value>
+  </data>
+  <data name="RatesDateColumnName" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="RatesPageTitle" xml:space="preserve">
+    <value>Rates</value>
+  </data>
+  <data name="RatesPictureColumnName" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="RatesScoreColumnName" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="RatesUserColumnName" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="ShareDirectLinkLabel" xml:space="preserve">
+    <value>Direct link:</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="ShareViewerLinkLabel" xml:space="preserve">
+    <value>Link:</value>
+  </data>
+  <data name="RatingLabel" xml:space="preserve">
+    <value>Rating:</value>
+  </data>
+  <data name="RatingUnrated" xml:space="preserve">
+    <value>Unrated</value>
+  </data>
+  <data name="RatingR15" xml:space="preserve">
+    <value>R-15</value>
+  </data>
+  <data name="RatingR18" xml:space="preserve">
+    <value>R-18</value>
+  </data>
+  <data name="RatingR18G" xml:space="preserve">
+    <value>R-18G</value>
+  </data>
+  <data name="RatingSFW" xml:space="preserve">
+    <value>SFW</value>
+  </data>
+  <data name="SaveButtonText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MaxRating" xml:space="preserve">
+    <value>Max rating</value>
+  </data>
+  <data name="ShowUnrated" xml:space="preserve">
+    <value>Show unrated</value>
+  </data>
+  <data name="StatusAccepted" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="StatusDeclined" xml:space="preserve">
+    <value>Declined</value>
+  </data>
+  <data name="StatusPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="NextButtonText" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PrevButtonText" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="BackButtonText" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="StatusAny" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="AddTagsLabel" xml:space="preserve">
+    <value>Add tags:</value>
+  </data>
+  <data name="CommentLabel" xml:space="preserve">
+    <value>Сomment:</value>
+  </data>
+  <data name="DoNotChange" xml:space="preserve">
+    <value>Do not change</value>
+  </data>
+  <data name="EditButtonText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditFormTitle" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="SelectModeButtonText" xml:space="preserve">
+    <value>Mark</value>
+  </data>
+  <data name="SetRatingLabel" xml:space="preserve">
+    <value>Set rating:</value>
+  </data>
+  <data name="SetStatusLabel" xml:space="preserve">
+    <value>Set status:</value>
+  </data>
+  <data name="RemoveTagsLabel" xml:space="preserve">
+    <value>Remove tags:</value>
+  </data>
+  <data name="MetadataSource" xml:space="preserve">
+    <value>Source:</value>
+  </data>
+  <data name="SetSourceLabel" xml:space="preserve">
+    <value>Set source:</value>
+  </data>
+  <data name="TagsStringTooLongMessage" xml:space="preserve">
+    <value>Tags string too long.</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MetadataFileSize" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="MetadataFormat" xml:space="preserve">
+    <value>Format:</value>
+  </data>
+  <data name="MetadataResolution" xml:space="preserve">
+    <value>Resolution:</value>
+  </data>
+  <data name="MetadataScore" xml:space="preserve">
+    <value>Score:</value>
+  </data>
+  <data name="MetadataUploaded" xml:space="preserve">
+    <value>Uploaded:</value>
+  </data>
+  <data name="ChangeMaxRatingPageTitle" xml:space="preserve">
+    <value>Change Max Rating</value>
+  </data>
+  <data name="UploadedBy" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="TagsTitle" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="SearchWith" xml:space="preserve">
+    <value>Search with</value>
+  </data>
+  <data name="OrientationAny" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="OrientationLandscape" xml:space="preserve">
+    <value>Landscape</value>
+  </data>
+  <data name="OrientationPortrait" xml:space="preserve">
+    <value>Portrait</value>
+  </data>
+  <data name="OrientationSquare" xml:space="preserve">
+    <value>Square</value>
+  </data>
+  <data name="MetadataPanelTitle" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="SimilarPicturesSectionTitle" xml:space="preserve">
+    <value>Similar Pictures</value>
+  </data>
+  <data name="CommentsSectionTitle" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="ShareWith" xml:space="preserve">
+    <value>Share with</value>
+  </data>
+</root>

@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DeselectAllButtonText" xml:space="preserve">
+    <value>Снять выделение</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>По вашему запросу ничего не найдено.</value>
+  </data>
+  <data name="RelatedTagsTitle" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="SelectAllButtonText" xml:space="preserve">
+    <value>Выделить все</value>
+  </data>
+  <data name="PictureNotExistsMessage" xml:space="preserve">
+    <value>Изображение не найдено</value>
+  </data>
+  <data name="SearchButtonText" xml:space="preserve">
+    <value>Искать</value>
+  </data>
+  <data name="SearchBoxHint" xml:space="preserve">
+    <value>Поисковый запрос</value>
+  </data>
+  <data name="SortingBoxHint" xml:space="preserve">
+    <value>Сортировка</value>
+  </data>
+  <data name="SortingHighestResolution" xml:space="preserve">
+    <value>Наибольшее разрешение</value>
+  </data>
+  <data name="SortingLowestResolution" xml:space="preserve">
+    <value>Наименьшее разрешение</value>
+  </data>
+  <data name="SortingNewest" xml:space="preserve">
+    <value>Самые новые</value>
+  </data>
+  <data name="SortingOldest" xml:space="preserve">
+    <value>Самые старые</value>
+  </data>
+  <data name="SortingRandom" xml:space="preserve">
+    <value>Случайные</value>
+  </data>
+  <data name="SortingTopRated" xml:space="preserve">
+    <value>Лучшая оценка</value>
+  </data>
+  <data name="AdvancedSearchLinkText" xml:space="preserve">
+    <value>Расширенный поиск</value>
+  </data>
+  <data name="SatusTagme" xml:space="preserve">
+    <value>Не указаны теги</value>
+  </data>
+  <data name="ExcludeTagHint" xml:space="preserve">
+    <value>Исключить из результатов поиска</value>
+  </data>
+  <data name="IncludeTagHint" xml:space="preserve">
+    <value>Добавить в условия поиска</value>
+  </data>
+  <data name="FavoriteButtonText" xml:space="preserve">
+    <value>Избранное</value>
+  </data>
+  <data name="MetadataFileSize" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="MetadataFormat" xml:space="preserve">
+    <value>Формат:</value>
+  </data>
+  <data name="MetadataResolution" xml:space="preserve">
+    <value>Разрешение:</value>
+  </data>
+  <data name="MetadataScore" xml:space="preserve">
+    <value>Оценка:</value>
+  </data>
+  <data name="MetadataTags" xml:space="preserve">
+    <value>Теги:</value>
+  </data>
+  <data name="MetadataUploaded" xml:space="preserve">
+    <value>Загружено:</value>
+  </data>
+  <data name="PictureDeclinedModerationMessage" xml:space="preserve">
+    <value>Изображение отклонено модератором.</value>
+  </data>
+  <data name="Rate0" xml:space="preserve">
+    <value>Нет оценки</value>
+  </data>
+  <data name="RatesDateColumnName" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="RatesPageTitle" xml:space="preserve">
+    <value>Оценки</value>
+  </data>
+  <data name="RatesPictureColumnName" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
+  <data name="RatesScoreColumnName" xml:space="preserve">
+    <value>Оценка</value>
+  </data>
+  <data name="RatesUserColumnName" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="ShareDirectLinkLabel" xml:space="preserve">
+    <value>Прямая ссылка:</value>
+  </data>
+  <data name="ShareTitle" xml:space="preserve">
+    <value>Поделиться</value>
+  </data>
+  <data name="ShareViewerLinkLabel" xml:space="preserve">
+    <value>Ссылка:</value>
+  </data>
+  <data name="TagsTitle" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="RatingLabel" xml:space="preserve">
+    <value>Рейтинг:</value>
+  </data>
+  <data name="SaveButtonText" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="MaxRating" xml:space="preserve">
+    <value>Максимально допустимый рейтинг</value>
+  </data>
+  <data name="ShowUnrated" xml:space="preserve">
+    <value>Показывать без рейтинга</value>
+  </data>
+  <data name="StatusAccepted" xml:space="preserve">
+    <value>Принято</value>
+  </data>
+  <data name="StatusDeclined" xml:space="preserve">
+    <value>Отклонено</value>
+  </data>
+  <data name="StatusPending" xml:space="preserve">
+    <value>Ожидает модерации</value>
+  </data>
+  <data name="NextButtonText" xml:space="preserve">
+    <value>Следующая</value>
+  </data>
+  <data name="PrevButtonText" xml:space="preserve">
+    <value>Предыдущая</value>
+  </data>
+  <data name="BackButtonText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="StatusAny" xml:space="preserve">
+    <value>Любой</value>
+  </data>
+  <data name="AddTagsLabel" xml:space="preserve">
+    <value>Добавить теги:</value>
+  </data>
+  <data name="CommentLabel" xml:space="preserve">
+    <value>Комментарий:</value>
+  </data>
+  <data name="DoNotChange" xml:space="preserve">
+    <value>Не менять</value>
+  </data>
+  <data name="EditButtonText" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="EditFormTitle" xml:space="preserve">
+    <value>Редактирование</value>
+  </data>
+  <data name="SelectModeButtonText" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="SetRatingLabel" xml:space="preserve">
+    <value>Установить рейтинг:</value>
+  </data>
+  <data name="SetStatusLabel" xml:space="preserve">
+    <value>Установить статус:</value>
+  </data>
+  <data name="RemoveTagsLabel" xml:space="preserve">
+    <value>Удалить теги:</value>
+  </data>
+  <data name="MetadataSource" xml:space="preserve">
+    <value>Источник:</value>
+  </data>
+  <data name="SetSourceLabel" xml:space="preserve">
+    <value>Установить источник:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="TagsStringTooLongMessage" xml:space="preserve">
+    <value>Строка с тегами слишком длинная.</value>
+  </data>
+  <data name="ChangeMaxRatingPageTitle" xml:space="preserve">
+    <value>Изменить максимальный рейтинг</value>
+  </data>
+  <data name="UploadedBy" xml:space="preserve">
+    <value>пользователем</value>
+  </data>
+  <data name="PicturePendingModerationMessage" xml:space="preserve">
+    <value>Изображение ожидает модерации.</value>
+  </data>
+  <data name="SearchWith" xml:space="preserve">
+    <value>Искать в</value>
+  </data>
+  <data name="OrientationAny" xml:space="preserve">
+    <value>Любая</value>
+  </data>
+  <data name="OrientationLandscape" xml:space="preserve">
+    <value>Горизонтальная</value>
+  </data>
+  <data name="OrientationPortrait" xml:space="preserve">
+    <value>Вертикальная</value>
+  </data>
+  <data name="OrientationSquare" xml:space="preserve">
+    <value>Квадрат</value>
+  </data>
+  <data name="MetadataPanelTitle" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="SimilarPicturesSectionTitle" xml:space="preserve">
+    <value>Похожие изображения</value>
+  </data>
+  <data name="CommentsSectionTitle" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="ShareWith" xml:space="preserve">
+    <value>Опубликовать ссылку в</value>
+  </data>
+</root>

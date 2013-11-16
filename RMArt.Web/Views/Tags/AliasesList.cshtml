@@ -1,0 +1,29 @@
+﻿@model TagAliasesListModel
+
+<ul class="tags-list">
+@foreach (var a in Model.Aliases)
+{
+	<li>
+		@a
+		@if (Model.ShowDeleteButtons)
+		{
+			using(
+				Ajax.BeginForm(
+					"DeleteAlias",
+					null,
+					new AjaxOptions 
+					{
+						UpdateTargetId = "aliases-list",
+						Confirm = "Delete alias?"
+					},
+					new { @class = "inline-form" }))
+			{
+				<input type="hidden" name="tagID" value="@Model.TagID"/>
+				<input type="hidden" name="name" value="@a"/>
+				<input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
+				<input type="submit" value="x" class="btn btn-link btn-xs"/>
+			}
+		}
+	</li>
+}
+</ul>

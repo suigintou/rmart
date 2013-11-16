@@ -1,0 +1,8 @@
+﻿@model IEnumerable<int>
+
+<ul class="comma-separated-list">
+	@foreach (var tagID in Model)
+	{
+		<li>@Html.Action("ShowTag", new { id = tagID, linkToTagDetails = ViewBag.LinkToTagDetails })</li>
+	}
+</ul>

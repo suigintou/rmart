@@ -1,0 +1,38 @@
+﻿@model IList<FileUploadResult>
+@{
+	ViewBag.Title = @UploadResources.UploadResultTitle;
+}
+
+<div class="page-header">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<table class="table table-striped table-bordered table-condensed">
+	<tr>
+		<th>@UploadResources.FileNameColumn</th>
+		<th>@UploadResources.FileStatusColumn</th>
+	</tr>
+	@foreach (var r in Model)
+	{
+		<tr>
+			<td>@r.Name</td>
+			<td>
+				@if (r.Status == PictureAddingResult.Added
+					|| r.Status == PictureAddingResult.Resurrected
+						|| r.Status == PictureAddingResult.AlreadyExists)
+				{
+					@Html.ActionLink(
+						r.Status.GetUploadResultMessage(),
+						"Viewer",
+						"Pictures",
+						new { id = r.PictureID },
+						null)
+				}
+				else
+				{
+					@r.Status.GetUploadResultMessage()
+				}
+			</td>
+		</tr>
+	}
+</table>

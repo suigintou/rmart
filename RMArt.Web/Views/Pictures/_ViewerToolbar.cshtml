@@ -1,0 +1,91 @@
+﻿@model PictureViewerModel
+
+<div class="btn-toolbar" role="toolbar" style="line-height: 0; margin-bottom: 18px;">
+	@*<div class="btn-group pull-right">
+		@if (!string.IsNullOrEmpty(Model.PrevUrl))
+		{
+			<a href="@Model.PrevUrl" rel="nofollow" id="prev-button" class="btn btn-default" title="@PicturesResources.PrevButtonText"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		}
+		@if (!string.IsNullOrEmpty(Model.NextUrl))
+		{
+			<a href="@Model.NextUrl" rel="nofollow" id="next-button" class="btn btn-default" title="@PicturesResources.NextButtonText"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		}
+	</div>*@
+
+	@*<div class="btn-group" style="margin-left: 0;">
+		<a href="@Model.BackUrl" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> @PicturesResources.BackButtonText</a>
+	</div>*@
+
+	<fieldset class="btn-group" data-toggle="buttons" disabled="@(!Model.CanRate)">
+		<label class="btn btn-default @(Model.UserScore == 0 ? "active" : "")" title="@PicturesResources.Rate0">
+			<input type="radio" name="userScore" value="0" data-picture-id="@Model.Picture.ID">
+			<span class="glyphicon glyphicon-remove"></span>
+		</label>
+		<label class="btn btn-default @(Model.UserScore == 1 ? "active" : "")">
+			<input type="radio" name="userScore" value="1" data-picture-id="@Model.Picture.ID">
+			@PicturesResources.Rate1
+		</label>
+		<label class="btn btn-default @(Model.UserScore == 2 ? "active" : "")">
+			<input type="radio" name="userScore" value="2" data-picture-id="@Model.Picture.ID">
+			@PicturesResources.Rate2
+		</label>
+		<label class="btn btn-default @(Model.UserScore == 3 ? "active" : "")">
+			<input type="radio" name="userScore" value="3" data-picture-id="@Model.Picture.ID">
+			@PicturesResources.Rate3
+		</label>
+	</fieldset>
+
+	<fieldset class="btn-group" data-toggle="buttons" disabled="@(!Model.CanFavorite)">
+		<label class="btn btn-default @(Model.IsFavorited ? "active" : "")">
+			<input id="favorite-checkbox" type="checkbox" data-picture-id="@Model.Picture.ID" />
+			<span class="glyphicon glyphicon-star"></span> @PicturesResources.FavoriteButtonText
+		</label>
+	</fieldset>
+
+	<div class="btn-group">
+		@if (Model.CanEdit)
+		{
+			<button data-target="#edit" data-toggle="modal" class="btn btn-default" accesskey="e"><span class="glyphicon glyphicon-pencil"></span> @PicturesResources.EditButtonText</button>
+		}
+		<a href="@Url.History(ObjectType.Picture, Model.Picture.ID)" rel="nofollow" class="btn btn-default"><span class="glyphicon glyphicon-time"></span> @HistoryResources.HistoryButtonText</a>
+	</div>
+	
+	<div class="btn-group">
+		<a href="@Url.Report(new ObjectReference(ObjectType.Picture, Model.Picture.ID), Request.RawUrl)" rel="nofollow" title="@ReportsResources.ReportButtonText" class="btn btn-default">
+			<span class="glyphicon glyphicon-flag"></span>
+		</a>
+	</div>
+
+	<div class="btn-group req-js">
+		<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<span class="glyphicon glyphicon-share"></span>
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li role="menuitem">
+				<a href="http://iqdb.org?url=@Url.Encode(Model.ShareDirectUrl)" rel="nofollow" target="_blank">
+					<img src="@Url.Content("~/Images/iqdb.org.png")" alt="" style="vertical-align: text-bottom; width: 16px; height: 16px;"/>
+					@PicturesResources.SearchWith iqdb
+				</a>
+			</li>
+			<li role="menuitem">
+				<a href="http://saucenao.com/search.php?db=999&amp;url=@Url.Encode(Model.ShareDirectUrl)" rel="nofollow" target="_blank">
+					<img src="@Url.Content("~/Images/saucenao.png")" alt="" style="vertical-align: text-bottom; width: 16px; height: 16px;"/>
+					@PicturesResources.SearchWith SauceNAO
+				</a>
+			</li>
+			<li role="menuitem">
+				<a href="http://www.google.com/searchbyimage?image_url=@Url.Encode(Model.ShareDirectUrl)" rel="nofollow" target="_blank">
+					<img src="@Url.Content("~/Images/google.com.png")" alt="" style="vertical-align: text-bottom; width: 16px; height: 16px;"/>
+					@PicturesResources.SearchWith Google
+				</a>
+			</li>
+			<li role="menuitem">
+				<a href="http://www.tineye.com/search?url=@Url.Encode(Model.ShareDirectUrl)" rel="nofollow" target="_blank">
+					<img src="@Url.Content("~/Images/tineye.com.png")" alt="" style="vertical-align: text-bottom; width: 16px; height: 16px;"/>
+					@PicturesResources.SearchWith Tineye
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

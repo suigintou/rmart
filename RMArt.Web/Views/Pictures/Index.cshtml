@@ -1,0 +1,82 @@
+﻿@model GalleryModel
+@{
+	ViewBag.Title = Model.Query;
+	ViewBag.ActivePage = NavigationTab.Gallery;
+	if (Model.CurrentPage > 1)
+	{
+		ViewBag.PrevPageUrl = Url.Gallery(Model.Query, Model.SortBy, Model.CurrentPage - 1);
+	}
+	if (Model.CurrentPage < Model.TotalPages)
+	{
+		ViewBag.NextPageUrl = Url.Gallery(Model.Query, Model.SortBy, Model.CurrentPage + 1);
+	}
+}
+
+<div class="page-header">
+	<h1>@(!string.IsNullOrEmpty(Model.Query) ? Model.Query : Model.SortBy.GetDisplayName()) <span class="badge">@Model.TotalCount</span></h1>
+</div>
+
+@Html.Partial("_GalleryToolbar")
+
+@if (Model.RelatedTags.Any())
+{
+	<div class="related-tags-border">
+		<div class="related-tags-container">
+			<ul class="horizontal-menu">
+				<li><strong>@PicturesResources.TagsTitle</strong></li>
+				@foreach (var t in Model.RelatedTags)
+				{
+					<li>
+						<a href="@t.IncludeUrl" rel="nofollow" class="tag-button" title="@PicturesResources.IncludeTagHint"><span class="glyphicon glyphicon-plus tag-filter-button"></span></a>
+						<a href="@t.ExcludeUrl" rel="nofollow" class="tag-button" title="@PicturesResources.ExcludeTagHint"><span class="glyphicon glyphicon-minus tag-filter-button"></span></a>
+						<a href="@t.Url" class="tag-button tag @t.Tag.Type.ToString().ToLower()" title="@t.Description" data-id="@t.Tag.ID">@t.Tag.Name</a>
+					</li>
+				}
+			</ul>
+		</div>
+	</div>
+}
+else
+{
+	<hr/>
+}
+
+@if (Model.ThumbnailsListModel.Pictures.Any())
+{
+	@Html.Partial("_GalleryThumbs", Model.ThumbnailsListModel)
+
+	if (Model.SortBy == PicturesSortOrder.Random)
+	{
+		<ul class="pager">
+			<li><a href="@Url.Gallery(Model.Query, PicturesSortOrder.Random, addRnd: true)">@SharedResources.NextRandom</a></li>
+		</ul>
+	}
+	else if (Model.TotalPages > 1)
+	{
+		<div style="text-align: center;">
+			<ul class="pagination">@Html.PageLinks(p => Url.Gallery(Model.Query, Model.SortBy, p), Model.CurrentPage, Model.TotalPages)</ul>
+		</div>
+	}
+}
+else
+{
+	<p>@PicturesResources.NoResults</p>
+}
+
+@if (Model.ThumbnailsListModel.Pictures.All(p => p.Rating == Rating.SFW) && !Request.IsLocal)
+{
+	<div id="ad-bottom" style="text-align: center;">
+		<script type="text/javascript">
+			google_ad_client = "ca-pub-7308261327937122";
+			google_ad_slot = "7466303176";
+			google_ad_width = 728;
+			google_ad_height = 90;
+		</script>
+		<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+	</div>
+}
+
+@if(Model.CanEdit)
+{
+	@Html.Partial("_EditForm")
+}

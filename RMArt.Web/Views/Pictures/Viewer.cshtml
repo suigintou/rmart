@@ -1,0 +1,92 @@
+﻿@model PictureViewerModel
+@{
+	ViewBag.Title = Model.Picture.PictureTitle(Model.Keywords);
+	ViewBag.ActivePage = NavigationTab.Viewer;
+	ViewBag.Keywords = Model.Keywords;
+}
+@section meta {
+	@if (Model.Picture.Rating == Rating.R15 || Model.Picture.Rating == Rating.R18 || Model.Picture.Rating == Rating.R18G)
+	{
+		<meta name="rating" content="RTA-5042-1996-1400-1577-RTA" />
+	}
+	
+	<meta property="og:title" content="@ViewBag.Title">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="@Model.ShareUrl">
+	<meta property="og:image" content="@Url.ToAbsolute(Url.ThumbSrc(Model.Picture.ID, 0))">
+	<meta property="og:description" content="@Model.Keywords">
+}
+
+<div class="page-header">
+	<h1 class="one-line">#@Model.Picture.ID@(Model.Keywords.Any() ? ": " + Model.Keywords : "")</h1>
+</div>
+
+@Html.Partial("_ViewerToolbar")
+
+@switch (Model.Picture.Status)
+{
+	case ModerationStatus.Declined:
+		<div class="alert alert-danger"><span class="glyphicon glyphicon-trash"></span> @PicturesResources.PictureDeclinedModerationMessage</div>break;
+	case ModerationStatus.Pending:
+		<div class="alert alert-warning"><span class="glyphicon glyphicon-eye-close"></span> @PicturesResources.PicturePendingModerationMessage</div>break;
+}
+
+<div class="row">
+	<div class="col-md-8 col-md-push-4">
+		@if (Model.CanView)
+		{
+			<div class="image-container">
+				<div class="image-container-inner">
+					<a href="@Model.PictureUrl">
+						<img id="image"
+							 src="@Model.PictureUrl"
+							 alt="@Model.Keywords"
+							 data-original-width="@Model.Picture.Width"
+							 data-original-height="@Model.Picture.Height"
+							 style="max-width: 100%; max-height: 600px;" />
+					</a>
+					<div id="zoom-indicator" class="zoom-ratio" style="display: none;" role="presentation">
+						<span class="glyphicon glyphicon-zoom-out icon-white"></span>
+						<span id="zoom-indicator-value"></span>%
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+	<div class="col-md-4 col-md-pull-8">
+		@Html.Partial("_ViewerSidebar")
+	</div>
+</div>
+
+@if (Model.Picture.Rating == Rating.SFW && !Request.IsLocal)
+{
+	<div id="ad-bottom" style="text-align: center; margin-top: 20px;">
+		<script type="text/javascript">
+			google_ad_client = "ca-pub-7308261327937122";
+			google_ad_slot = "2056226196";
+			google_ad_width = 728;
+			google_ad_height = 90;
+		</script>
+		<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+	</div>
+}
+
+@if (Model.SimilarPictureThumbs.Pictures.Any())
+{
+	<div>
+		<h2>@PicturesResources.SimilarPicturesSectionTitle</h2>
+		@Html.Partial("_GalleryThumbs", Model.SimilarPictureThumbs)
+	</div>
+}
+
+<div>
+	<h2>@PicturesResources.CommentsSectionTitle</h2>
+	@Html.Action("ShowMessages", "Discussions", new { parentType = ObjectType.Picture, parentID = Model.Picture.ID })
+	@Html.Action("CommentForm", "Discussions", new { parentType = ObjectType.Picture, parentID = Model.Picture.ID })
+</div>
+
+@if (Model.CanEdit)
+{
+	<input type="hidden" form="edit-form" name="ids" value="@Model.Picture.ID"/>
+	@Html.Partial("_EditForm")
+}

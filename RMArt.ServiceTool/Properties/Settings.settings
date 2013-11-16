@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RMArt.ServiceTool.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PicturesDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\pics</Value>
+    </Setting>
+    <Setting Name="ThumbsDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\thumbs</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

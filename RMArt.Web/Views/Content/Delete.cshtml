@@ -1,0 +1,15 @@
+﻿@model ContentPageDeleteModel
+
+<form action="@Url.Action("Delete")" method="post">
+
+	<input type="hidden" name="ID" value="@Model.ID"/>
+	<input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl"/>
+
+	<p>Delete content page "@Model.Name" for culture "@VisualizationHelper.CultureName(Model.CultureID)"?</p>
+
+	<div class="form-actions">
+		<input type="submit" value="Delete" class="btn btn-danger" />
+		<a href="@Model.ReturnUrl" class="btn">Cancel</a>
+	</div>
+
+</form>

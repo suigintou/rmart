@@ -1,0 +1,89 @@
+﻿@model AccountModel
+@{
+	ViewBag.Title = AccountResources.AccountPageTitle;
+}
+
+@if (Model.PrivateProfile && !Model.Self && !Request.IsUserInRole(UserRole.Moderator))
+{
+	<p>@AccountResources.ProfileIsPrivateMessage</p>
+}
+else
+{
+	<div class="page-header">
+		<h1>@Model.Login <small>@Model.Name</small></h1>
+	</div>
+
+	<div class="clearfix">
+		<div style="width: 128px; float: left;">
+			<a href="@Gravatar.GetUrl(Model.Email, 512)">
+				<img src="@Gravatar.GetUrl(Model.Email, 128)" width="128" height="128" class="img-rounded" />
+			</a>
+		</div>
+		<div id="statistics" style="margin-left: 148px;">
+			<p>
+				<span class="metadata-label">@AccountResources.RegistrationDate</span>
+				<time datetime="@Model.RegistrationDate.ToString(VisualizationHelper.ISODateTimeFormat)">
+					@Model.RegistrationDate.ToString(VisualizationHelper.DateFormat) (UTC)
+				</time>
+			</p>
+			<p>
+				<span class="metadata-label">@AccountResources.StatisticsPicturesUploaded</span>
+				@Html.ActionLink(
+					Model.PicturesUploaded.ToString(),
+					"Index",
+					"Pictures",
+					new { q = PicturesSearchQueryHelper.UploaderKey + PicturesSearchQueryHelper.KeyValueDelimeter + Model.Login },
+					null)
+			</p>
+			<p>
+				<span class="metadata-label">@AccountResources.StatisticsRatesGiven</span>
+				@if (Model.Self || Request.IsUserInRole(UserRole.Moderator))
+				{
+					@Html.ActionLink(Model.RatesGiven.ToString(), "Rates", "Pictures", new { user = Model.Login }, null)
+				}
+				else
+				{
+					@Model.RatesGiven
+				}
+			</p>
+			<p>
+				<span class="metadata-label">@AccountResources.StatisticsPicturesFavorited</span>
+				@Html.ActionLink(
+					Model.PicturesFavorited.ToString(),
+					"Index",
+					"Pictures",
+					new { q = PicturesSearchQueryHelper.FavoritedByKey + PicturesSearchQueryHelper.KeyValueDelimeter + Model.Login },
+					null)
+			</p>
+		</div>
+	</div>
+
+	if (Model.Self)
+	{
+		<hr />
+		<ul class="vertical-menu" style="width: 200px;">
+			<li>
+				<a href="@Url.Action("EditProfile")" class="btn btn-default btn-block">
+					<span class="glyphicon glyphicon-user"></span> @AccountResources.EditProfile
+				</a>
+			</li>
+			<li>
+				<a href="@Url.Action("AccountSettings")" class="btn btn-default btn-block">
+					<span class="glyphicon glyphicon-cog"></span> @AccountResources.AccountSettings
+				</a>
+			</li>
+			<li>
+				<a href="@Url.Action("ChangePassword")" class="btn btn-default btn-block">
+					<span class="glyphicon glyphicon-lock"></span> @AccountResources.ChangePassword
+				</a>
+			</li>
+			<li>
+				<form action="@Url.Action("LogOut")" method="post" style="margin: 0;">
+					<button class="btn btn-danger btn-block">
+						<span class="glyphicon glyphicon-off"></span> @AccountResources.LogOut
+					</button>
+				</form>
+			</li>
+		</ul>
+	}
+}

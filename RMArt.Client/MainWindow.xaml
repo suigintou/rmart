@@ -1,0 +1,133 @@
+﻿<Window x:Class="RMArt.Client.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:p="clr-namespace:RMArt.Client.Properties"
+		xmlns:c="clr-namespace:RMArt.Client.Core"
+		Title="RMArt Client" Height="600" Width="800" Icon="Icon.ico">
+	<Window.TaskbarItemInfo>
+		<TaskbarItemInfo/>
+	</Window.TaskbarItemInfo>
+	<DockPanel Margin="2">
+		<TabControl Name="_settingsTabControl" DockPanel.Dock="Top" Margin="2" Height="200">
+			<TabItem Header="Upload">
+				<DockPanel>
+					<Button Margin="2" HorizontalAlignment="Right" MinWidth="80" Height="25" Click="UploadButtonClick" DockPanel.Dock="Bottom">Upload</Button>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="110"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.Column="0" Grid.Row="0" Margin="2">Source:</TextBlock>
+						<DockPanel Grid.Column="1" Grid.Row="0" Margin="2">
+							<Button DockPanel.Dock="Right" Width="25" IsEnabled="False">...</Button>
+							<TextBox Text="{Binding Source={x:Static p:Settings.Default}, Path=UploadDirectory, Mode=TwoWay}" />
+						</DockPanel>
+
+						<TextBlock Grid.Column="0" Grid.Row="1" Margin="2">Tags:</TextBlock>
+						<TextBox Grid.Column="1" Grid.Row="1" Margin="2" Text="{Binding Source={x:Static p:Settings.Default}, Path=UploadTags, Mode=TwoWay}" MaxLength="200" />
+
+						<TextBlock Grid.Column="0" Grid.Row="2" Margin="2">Rating:</TextBlock>
+						<ComboBox Grid.Column="1" Grid.Row="2" Margin="2" Width="100" HorizontalAlignment="Left"
+						          SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=UploadRatingSelectedIndex, Mode=TwoWay}"
+								  ItemsSource="{x:Static c:PicturesClient.Ratings}"/>
+
+						<WrapPanel Orientation="Vertical" Grid.Column="1" Grid.Row="3">
+							<CheckBox Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=IncludeUploadSubdirectories, Mode=TwoWay}">
+								Include subdirectories
+							</CheckBox>
+							<CheckBox Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=DoNotUploadNewPictures, Mode=TwoWay}">
+								Do not upload new pictures
+							</CheckBox>
+							<CheckBox Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=SetPixivSources, Mode=TwoWay}">
+								Set source to Pixiv.net using file name
+							</CheckBox>
+							<CheckBox Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=ReplaceExistingFiles, Mode=TwoWay}">
+								Replace existing files
+							</CheckBox>
+							<CheckBox Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=DeleteFilesAfterUpload, Mode=TwoWay}">
+								Remove files after upload
+							</CheckBox>
+							<CheckBox Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=CheckByData, Mode=TwoWay}" IsEnabled="False">
+								Upload for checking
+							</CheckBox>
+							<CheckBox Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=DoNotEditExisting, Mode=TwoWay}">
+								Do not edit existing files metadata
+							</CheckBox>
+						</WrapPanel>
+					</Grid>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Download">
+				<StackPanel>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="110"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.Column="0" Grid.Row="0" Margin="2">Destantion:</TextBlock>
+						<DockPanel Grid.Column="1" Grid.Row="0" Margin="2">
+							<Button DockPanel.Dock="Right" Width="25" IsEnabled="False">...</Button>
+							<TextBox Text="{Binding Source={x:Static p:Settings.Default}, Path=DownloadDirectory, Mode=TwoWay}" />
+						</DockPanel>
+
+						<TextBlock Grid.Column="0" Grid.Row="1" Margin="2">Query:</TextBlock>
+						<TextBox Grid.Column="1" Grid.Row="1" Margin="2" Text="{Binding Source={x:Static p:Settings.Default}, Path=DownloadQuery, Mode=TwoWay}"/>
+
+						<CheckBox Grid.Column="0" Grid.Row="2" Margin="2" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=UseCustomDownloadSource, Mode=TwoWay}">
+							Custom source:
+						</CheckBox>
+						<TextBox Grid.Column="1" Grid.Row="2" Margin="2"
+							Text="{Binding Source={x:Static p:Settings.Default}, Path=CustomDownloadSource, Mode=TwoWay}"
+							IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=UseCustomDownloadSource}"/>
+					</Grid>
+					<Button Margin="2" HorizontalAlignment="Right" MinWidth="80" Height="25" Click="DownloadButtonClick">Download</Button>
+				</StackPanel>
+			</TabItem>
+			<TabItem Header="Settings">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="110"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock Grid.Column="0" Grid.Row="0" Margin="2">Site:</TextBlock>
+					<ComboBox Grid.Column="1" Grid.Row="0" Margin="2" Name="_siteComboBox" SelectedItem="{Binding Source={x:Static p:Settings.Default}, Path=Site, Mode=TwoWay}"/>
+
+					<TextBlock Grid.Column="0" Grid.Row="1" Margin="2">Login:</TextBlock>
+					<TextBox Grid.Column="1" Grid.Row="1" Margin="2" Text="{Binding Source={x:Static p:Settings.Default}, Path=Login, Mode=TwoWay}"/>
+
+					<TextBlock Grid.Column="0" Grid.Row="2" Margin="2">Password:</TextBlock>
+					<TextBox Grid.Column="1" Grid.Row="2" Margin="2" Text="{Binding Source={x:Static p:Settings.Default}, Path=Password, Mode=TwoWay}"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
+
+		<DockPanel DockPanel.Dock="Bottom">
+			<Button Name="_cancellButton" DockPanel.Dock="Right" Margin="2" MinWidth="80" Height="25" IsEnabled="False" Click="CancellButtonClick">Cancel</Button>
+			<Button Name="_pauseButton" DockPanel.Dock="Right" Margin="2" MinWidth="80" Height="25" IsEnabled="False" Click="PauseButtonClick">Pause</Button>
+			<ProgressBar Name="_progressBar" Height="25" Margin="2"/>
+		</DockPanel>
+
+		<GroupBox Header="Log" Margin="2">
+			<TextBox Name="_logTextBox" BorderThickness="0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" IsUndoEnabled="False" TextWrapping="Wrap" AcceptsReturn="True"/>
+		</GroupBox>
+	</DockPanel>
+</Window>
